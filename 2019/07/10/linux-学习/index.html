@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="相关系统  ubuntu redhat centOS   使用方向  企业服务器 嵌入式开发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux 学习">
+<meta property="og:url" content="http://example.com/2019/07/10/linux-%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="蝴蝶效应">
+<meta property="og:description" content="相关系统  ubuntu redhat centOS   使用方向  企业服务器 嵌入式开发">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-07-10T15:21:40.000Z">
+<meta property="article:modified_time" content="2024-02-01T08:54:03.964Z">
+<meta property="article:author" content="Roy">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2019/07/10/linux-%E5%AD%A6%E4%B9%A0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Linux 学习 | 蝴蝶效应</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">蝴蝶效应</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2019/07/10/linux-%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Roy">
+      <meta itemprop="description" content="即使细微如蝴蝶鼓舞，也能煽动千里之飓风。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蝴蝶效应">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Linux 学习
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-07-10 23:21:40" itemprop="dateCreated datePublished" datetime="2019-07-10T23:21:40+08:00">2019-07-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-02-01 16:54:03" itemprop="dateModified" datetime="2024-02-01T16:54:03+08:00">2024-02-01</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <ul>
+<li><p>相关系统</p>
+<ul>
+<li>ubuntu</li>
+<li>redhat</li>
+<li>centOS</li>
+</ul>
+</li>
+<li><p>使用方向</p>
+<ul>
+<li>企业服务器</li>
+<li>嵌入式开发<span id="more"></span></li>
+</ul>
+</li>
+<li><p>特殊</p>
+<ul>
+<li>区分大小写</li>
+<li>一切皆文件</li>
+<li>文件后缀名不重要</li>
+</ul>
+</li>
+<li><p>安装准备</p>
+<ul>
+<li>VirtualBox</li>
+<li>centOS 镜像文件</li>
+<li>设置<a target="_blank" rel="noopener" href="http://mirrors.163.com/.help/centos.html">镜像地址</a></li>
+<li>iterm2 - ssh连接</li>
+</ul>
+</li>
+<li><p>本地网络设置</p>
+<ul>
+<li>设置 <code>/etc/sysconfig/network-scripts/ifcfg-enp0s3</code> 中ONBOOT为yes</li>
+<li>重启网络 <code>service network restart</code></li>
+</ul>
+</li>
+<li><p>SSH学习</p>
+<ul>
+<li><p>服务器安装SSH服务</p>
+<ul>
+<li><code>yum install openssh-server</code></li>
+<li><code>service sshd start</code></li>
+<li><code>chkconfig sshd on</code></li>
+</ul>
+</li>
+<li><p>ssh连接服务器</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh &lt;username&gt;@&lt;IP address&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置ssh链接<br>~&#x2F;.ssh&#x2F;config 文件中添加<br><code>host &quot;&lt;name&gt;&quot; HostName &lt;IP address&gt; User &lt;username&gt; Port &lt;port&gt;</code></p>
+</li>
+<li><p>配置ssh密钥登陆<br><code>~/.ssh/config/authorized_keys</code>添加密钥</p>
+</li>
+<li><p>修改ssh服务器端口号<br><code>/etc/ssh/sshd_config</code>中在Port部分添加或者修改端口号</p>
+</li>
+</ul>
+</li>
+<li><p>常用命令</p>
+<ul>
+<li>软件操作命令<ul>
+<li>yum remove ~</li>
+<li>yum serach ~</li>
+<li>yum clean packages</li>
+<li>yum list</li>
+<li>yum info ~</li>
+</ul>
+</li>
+<li>服务器硬件资源信息<ul>
+<li>内存 <code>free -m</code></li>
+<li>硬盘 <code>df -h</code></li>
+<li>负载 <code>w/top</code> 0.6～0.7是正常健康值</li>
+<li>cpu个数 <code>cat /proc/cupinfo</code></li>
+</ul>
+</li>
+<li>文件操作命令<ul>
+<li><code>mkdir -p test1/test2/test3</code></li>
+<li><code>rm -rf test1</code></li>
+</ul>
+</li>
+<li>vim命令（菜鸟教程）<ul>
+<li><code>dd</code> 删除整行</li>
+<li><code>gg</code> 跳到文首</li>
+<li><code>G</code> 跳到文尾</li>
+<li><code>u</code> 撤销删除</li>
+<li><code>yy</code> 复制</li>
+<li><code>p</code> 粘贴</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>权限<br>421 以二进制表示 如 <code>rwxr-x--x</code>则代表 (4+2+1) + (5) + (1) &#x3D; 751</p>
+</li>
+<li><p>文件读取</p>
+<ul>
+<li><code>head</code> 从头部查看</li>
+<li><code>tail</code> 从尾部查看</li>
+<li><code>more</code> 分页查看</li>
+<li><code>less</code></li>
+<li><code>grep</code>  模糊查找</li>
+</ul>
+</li>
+<li><p>文件查找</p>
+<ul>
+<li><code>find -name</code> 名称（* 模糊搜索）</li>
+<li><code>find -type</code> 类型（d, f）</li>
+<li><code>find -ctime</code> 时间限制</li>
+</ul>
+</li>
+<li><p>文件压缩和解压</p>
+<ul>
+<li><code>tar -cf</code> 压缩文件</li>
+<li><code>tar -tf</code> 查看压缩文件内容</li>
+<li><code>tar -xf</code> 解压文件</li>
+<li><code>tar -czf</code> 压缩成gz格式</li>
+<li><code>tar -xzf</code> 解压gz文件</li>
+</ul>
+</li>
+<li><p>用户操作</p>
+<ul>
+<li><code>adduser &lt;userName&gt;</code> 添加用户</li>
+<li><code>passwd &lt;userName&gt;</code> 添加用户密码</li>
+<li><code>userdel -r &lt;userName&gt;</code> 删除用户以及相关文件夹</li>
+</ul>
+</li>
+<li><p>防火墙</p>
+<p><code>firewall-cmd</code> 命令行操作</p>
+</li>
+<li><p>提权操作</p>
+<p>通过<code>visudo</code> 进入到文件编辑，找到其中<code>## Allows people in group wheel to run all commands</code>的部分，添加进相应的账号设置权限。</p>
+</li>
+<li><p>获取文件</p>
+<ul>
+<li><code>wget</code></li>
+<li><code>curl</code></li>
+</ul>
+</li>
+<li><p>文件上传</p>
+<p><code>scp &lt;filename&gt; &lt;ipaddr&gt;:&lt;path&gt;</code></p>
+</li>
+<li><p>文件下载</p>
+<p><code>scp &lt;ipaddr&gt; &lt;filename&gt; &lt;downloadpath&gt;</code></p>
+</li>
+<li><p>Apache</p>
+<ul>
+<li><code>yum install httpd</code> 启动</li>
+<li><code>service httpd start</code> 安装</li>
+<li><code>service httpd stop</code> 结束</li>
+<li><code>ps -ef | grep httpd</code> 查看启动的httpd相关的服务</li>
+<li><code>netstat -anpl |grep &#39;http&#39;</code> 查看http开放端口</li>
+<li><code>chown -R &lt;userName&gt;:&lt;userName&gt; &lt;dirPath&gt;</code>将某个文件夹权限赋予某个用户</li>
+</ul>
+<p>安装好以后可能通过浏览器无法访问，此时可以将linux防火墙关闭后再试</p>
+<ul>
+<li><p>设置虚拟主机</p>
+<p>首先进入<code>/etc/httpd/conf</code>文件夹中，vim编辑<code>httpd.conf</code>文件，添加</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">VirtualHost</span> *<span class="attr">:</span>&lt;<span class="attr">port</span>&gt;</span>&gt;</span><br><span class="line">    ServerName <span class="tag">&lt;<span class="name">serverName</span>&gt;</span></span><br><span class="line">    documentRoot <span class="tag">&lt;<span class="name">documentRoot</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    Options Indexes FollowSymLinks</span><br><span class="line"><span class="tag">&lt;/<span class="name">VirtualHost</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果启动依旧报错，可以尝试运行<code>setenforce 0</code>，0为宽容模式，1为强制模式</p>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/06/27/%E5%A2%A8%E8%8F%B2%E5%AE%9A%E5%BE%8B/" rel="prev" title="墨菲定律">
+      <i class="fa fa-chevron-left"></i> 墨菲定律
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/07/24/Typescript%E5%AD%A6%E4%B9%A0/" rel="next" title="Typescript学习">
+      Typescript学习 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTExMi8xNTYzOQ=="></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Roy"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Roy</p>
+  <div class="site-description" itemprop="description">即使细微如蝴蝶鼓舞，也能煽动千里之飓风。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Roy</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>

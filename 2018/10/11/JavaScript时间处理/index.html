@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="相关概念时区在地球上不同地方的人看到太阳升起的时间不一致，就有了时区的概念。例如北京早上8:00可以看到太阳刚刚升起，而欧洲此时还在夜晚，大概是凌晨1:00。他们看到当天太阳升起的时间应该是北京时间的下午3点，所以就有下面这样一个等式：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript时间处理">
+<meta property="og:url" content="http://example.com/2018/10/11/JavaScript%E6%97%B6%E9%97%B4%E5%A4%84%E7%90%86/index.html">
+<meta property="og:site_name" content="蝴蝶效应">
+<meta property="og:description" content="相关概念时区在地球上不同地方的人看到太阳升起的时间不一致，就有了时区的概念。例如北京早上8:00可以看到太阳刚刚升起，而欧洲此时还在夜晚，大概是凌晨1:00。他们看到当天太阳升起的时间应该是北京时间的下午3点，所以就有下面这样一个等式：">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-10-11T15:42:40.000Z">
+<meta property="article:modified_time" content="2024-02-01T08:54:03.962Z">
+<meta property="article:author" content="Roy">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2018/10/11/JavaScript%E6%97%B6%E9%97%B4%E5%A4%84%E7%90%86/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>JavaScript时间处理 | 蝴蝶效应</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">蝴蝶效应</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2018/10/11/JavaScript%E6%97%B6%E9%97%B4%E5%A4%84%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Roy">
+      <meta itemprop="description" content="即使细微如蝴蝶鼓舞，也能煽动千里之飓风。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蝴蝶效应">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JavaScript时间处理
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-10-11 23:42:40" itemprop="dateCreated datePublished" datetime="2018-10-11T23:42:40+08:00">2018-10-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-02-01 16:54:03" itemprop="dateModified" datetime="2024-02-01T16:54:03+08:00">2024-02-01</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h3><h4 id="时区"><a href="#时区" class="headerlink" title="时区"></a>时区</h4><p>在地球上不同地方的人看到太阳升起的时间不一致，就有了时区的概念。例如北京早上8:00可以看到太阳刚刚升起，而欧洲此时还在夜晚，大概是凌晨1:00。他们看到当天太阳升起的时间应该是北京时间的下午3点，所以就有下面这样一个等式：</p>
+<span id="more"></span>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;2014-10-14 08:00 +8:00&quot;</span> = <span class="string">&quot;2014-10-14 01:00 +1:00&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="标准时间"><a href="#标准时间" class="headerlink" title="标准时间"></a>标准时间</h4><p>GMT即<em>格林威治标准时间</em>，指英国伦敦郊区的皇家格林威治天文台的标准时间，因为本初子午线被定位为通过此地的经线。由于地球不规则自转，导致GMT时间有误差，因此目前已不被当作标准时间使用。UTC是最主要的世界时间标准，是经过平均太阳时(以格林威治时间GMT为准)、地轴运动修正后的新时标以及以「秒」为单位的国际原子时所综合精算而成的时间。UTC比GMT来得更加精准。其误差值必须保持在0.9秒以内，若大于0.9秒则由位于巴黎的国际地球自转事务中央局发布闰秒，使UTC与地球自转周期一致。不过日常使用中，GMT与UTC的功能与精确度是没有差别的。协调世界时区会使用“Z”来表示。而在航空上，所有使用的时间划一规定是协调世界时。</p>
+<h4 id="TimeZone-UTC-Offsets-时区与偏移"><a href="#TimeZone-UTC-Offsets-时区与偏移" class="headerlink" title="TimeZone&amp;UTC Offsets:时区与偏移"></a>TimeZone&amp;UTC Offsets:时区与偏移</h4><p>人们经常会把时区与UTC偏移量搞混，UTC偏移量代表了某个具体的时间值与UTC时间之间的差异，通常用HH:mm形式表述。而TimeZone则表示某个地理区域，某个TimeZone中往往会包含多个偏移量，而多个时区可能在一年的某些时间有相同的偏移量。譬如America&#x2F;Chicago, America&#x2F;Denver, 以及 America&#x2F;Belize在一年中不同的时间都会包含 -06:00 这个偏移。</p>
+<h4 id="时间戳"><a href="#时间戳" class="headerlink" title="时间戳"></a>时间戳</h4><p>Unix时间戳表示当前时间到1970年1月1日00:00:00 UTC对应的秒数。注意，JavaScript内的时间戳指的是当前时间到1970年1月1日00:00:00 UTC对应的毫秒数，和unix时间戳不是一个概念，后者表示秒数，差了1000倍。</p>
+<h4 id="时间数字字符串格式"><a href="#时间数字字符串格式" class="headerlink" title="时间数字字符串格式"></a>时间数字字符串格式</h4><h5 id="RFC2822"><a href="#RFC2822" class="headerlink" title="RFC2822"></a>RFC2822</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable constant_">YYYY</span>/<span class="variable constant_">MM</span>/<span class="variable constant_">DD</span> <span class="attr">HH</span>:<span class="attr">MM</span>:<span class="variable constant_">SS</span> ± <span class="title function_">timezone</span>(时区用<span class="number">4</span>位数字表示)</span><br></pre></td></tr></table></figure>
+
+<h5 id="ISO-8601（国际标准）"><a href="#ISO-8601（国际标准）" class="headerlink" title="ISO 8601（国际标准）"></a>ISO 8601（国际标准）</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable constant_">YYYY</span>-<span class="variable constant_">MM</span>-<span class="title class_">DDThh</span>:<span class="attr">mm</span>:ss ± <span class="title function_">timezone</span>(时区用<span class="attr">HH</span>:<span class="variable constant_">MM</span>表示)</span><br></pre></td></tr></table></figure>
+
+<h3 id="常见时间使用问题"><a href="#常见时间使用问题" class="headerlink" title="常见时间使用问题"></a>常见时间使用问题</h3><h4 id="服务器部署地不一致"><a href="#服务器部署地不一致" class="headerlink" title="服务器部署地不一致"></a>服务器部署地不一致</h4><p>如果使用的是带时区的字符串转换的Moment对象，服务器部署地不一致时可能会导致某些测试failed。比如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1997</span>-<span class="number">07</span>-16<span class="attr">T08</span>:<span class="number">20</span>:30Z</span><br><span class="line"><span class="comment">// “Z”表示UTC标准时区，即&quot;00:00&quot;,所以这里表示零时区的`1997年7月16日08时20分30秒`</span></span><br><span class="line"><span class="comment">//转换成位于东八区的北京时间则为`1997年7月16日16时20分30秒`</span></span><br><span class="line"><span class="number">1997</span>-<span class="number">07</span>-16<span class="attr">T19</span>:<span class="number">20</span>:<span class="number">30</span>+<span class="number">01</span>:<span class="number">00</span></span><br><span class="line"><span class="comment">// 表示东一区的1997年7月16日19时20秒30分，转换成UTC标准时间的话是1997-07-16T18:20:30Z</span></span><br></pre></td></tr></table></figure>
+
+<p>如果有一个界面的snapshot测试，并且界面显示为日期和时间的字符串，在不同的服务器上运行就会导致界面不一致，从而影响测试。解决方法是使用不带时区的mockData去测试。值得注意的是在使用不带时区的字符串时，转换出来的是当地时间，当转换为时间戳时，不同地区的时间戳也不一样，所以使用时应该注意。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/09/26/webpack%E6%A6%82%E5%BF%B5%E6%95%B4%E7%90%86/" rel="prev" title="webpack概念整理">
+      <i class="fa fa-chevron-left"></i> webpack概念整理
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/03/07/CSS%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD/" rel="next" title="CSS水平居中">
+      CSS水平居中 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTExMi8xNTYzOQ=="></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">相关概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%97%B6%E5%8C%BA"><span class="nav-number">1.1.</span> <span class="nav-text">时区</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%87%E5%87%86%E6%97%B6%E9%97%B4"><span class="nav-number">1.2.</span> <span class="nav-text">标准时间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TimeZone-UTC-Offsets-%E6%97%B6%E5%8C%BA%E4%B8%8E%E5%81%8F%E7%A7%BB"><span class="nav-number">1.3.</span> <span class="nav-text">TimeZone&amp;UTC Offsets:时区与偏移</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%97%B6%E9%97%B4%E6%88%B3"><span class="nav-number">1.4.</span> <span class="nav-text">时间戳</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%97%B6%E9%97%B4%E6%95%B0%E5%AD%97%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.5.</span> <span class="nav-text">时间数字字符串格式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#RFC2822"><span class="nav-number">1.5.1.</span> <span class="nav-text">RFC2822</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ISO-8601%EF%BC%88%E5%9B%BD%E9%99%85%E6%A0%87%E5%87%86%EF%BC%89"><span class="nav-number">1.5.2.</span> <span class="nav-text">ISO 8601（国际标准）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E6%97%B6%E9%97%B4%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">常见时间使用问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2%E5%9C%B0%E4%B8%8D%E4%B8%80%E8%87%B4"><span class="nav-number">2.1.</span> <span class="nav-text">服务器部署地不一致</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Roy"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Roy</p>
+  <div class="site-description" itemprop="description">即使细微如蝴蝶鼓舞，也能煽动千里之飓风。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Roy</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>

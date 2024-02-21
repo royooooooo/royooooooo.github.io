@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="在我们去了解React Fiber之前，我们需要先了解到React的渲染机制，从而去探求为什么React会选择推出React Fiber来替换以前的模式。 React的渲染机制React会在内存中维护一棵虚拟的DOM树（V-DOM-TREE）。当数据(state)发生变化时，会自动更新虚拟DOM，生成一棵新的虚拟DOM树。通过 Diff 两棵树来找到变化的部分，从而得到一个更新的集合（Patch）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图解 React Fiber 机制">
+<meta property="og:url" content="http://example.com/2021/04/22/react_fiber/index.html">
+<meta property="og:site_name" content="蝴蝶效应">
+<meta property="og:description" content="在我们去了解React Fiber之前，我们需要先了解到React的渲染机制，从而去探求为什么React会选择推出React Fiber来替换以前的模式。 React的渲染机制React会在内存中维护一棵虚拟的DOM树（V-DOM-TREE）。当数据(state)发生变化时，会自动更新虚拟DOM，生成一棵新的虚拟DOM树。通过 Diff 两棵树来找到变化的部分，从而得到一个更新的集合（Patch）">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.zhimg.com/80/v2-de478ba837d05e597cbf629b176e2aac_1440w.jpg">
+<meta property="article:published_time" content="2021-04-22T14:08:37.000Z">
+<meta property="article:modified_time" content="2024-02-01T08:54:03.969Z">
+<meta property="article:author" content="Roy">
+<meta property="article:tag" content="react">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.zhimg.com/80/v2-de478ba837d05e597cbf629b176e2aac_1440w.jpg">
+
+<link rel="canonical" href="http://example.com/2021/04/22/react_fiber/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>图解 React Fiber 机制 | 蝴蝶效应</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">蝴蝶效应</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/22/react_fiber/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Roy">
+      <meta itemprop="description" content="即使细微如蝴蝶鼓舞，也能煽动千里之飓风。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蝴蝶效应">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          图解 React Fiber 机制
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-04-22 22:08:37" itemprop="dateCreated datePublished" datetime="2021-04-22T22:08:37+08:00">2021-04-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-02-01 16:54:03" itemprop="dateModified" datetime="2024-02-01T16:54:03+08:00">2024-02-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>在我们去了解React Fiber之前，我们需要先了解到React的渲染机制，从而去探求为什么React会选择推出React Fiber来替换以前的模式。</p>
+<h2 id="React的渲染机制"><a href="#React的渲染机制" class="headerlink" title="React的渲染机制"></a>React的渲染机制</h2><p>React会在内存中维护一棵虚拟的DOM树（V-DOM-TREE）。当数据(state)发生变化时，会自动更新虚拟DOM，生成一棵新的虚拟DOM树。通过 Diff 两棵树来找到变化的部分，从而得到一个更新的集合（Patch），然后将集合加到队列中，最终去批量更新Patch到真实的DOM节点中。</p>
+<p><img src="https://pic1.zhimg.com/80/v2-de478ba837d05e597cbf629b176e2aac_1440w.jpg" alt="img"></p>
+<span id="more"></span>
+<h3 id="虚拟DOM"><a href="#虚拟DOM" class="headerlink" title="虚拟DOM"></a>虚拟DOM</h3><p>V-DOM（虚拟DOM）是对真实DOM的抽象，本质上是一个JS对象。</p>
+
+
+<ul>
+<li>传统的Web App通过和DOM的直接交互来构建和监听事件的发生，但是频繁的变动DOM会导致浏览器的回流或者重绘，影响性能。通过V-DOM，我们可以尽可能一次性将差异更新到DOM中，解决了部分性能问题</li>
+<li>通过V-DOM的抽象，我们将真实的渲染和逻辑的构建拆分开，更好的实现跨平台开发</li>
+</ul>
+<h2 id="React-Fiber之前的不足"><a href="#React-Fiber之前的不足" class="headerlink" title="React Fiber之前的不足"></a>React Fiber之前的不足</h2><p>在React16之前的版本，调节器(stack reconciler)更新DOM树的时候是采用自顶向下递归的方式，从根组件（首次渲染）或调用<code>setStatus</code>的组件开始去更新子节点。组件树越复杂，递归遍历的成本越高，再加上JS本身只运行在主线程，就会造成持续占用主线程。如果由于执行JS脚本耗费时间较多，就会导致主线程上的布局、动画等周期性任务以及交互任务无法立即处理，就会造成视觉上的卡顿。</p>
+<h3 id="浏览器的渲染"><a href="#浏览器的渲染" class="headerlink" title="浏览器的渲染"></a>浏览器的渲染</h3>
+
+<h3 id="耗时操作的参与"><a href="#耗时操作的参与" class="headerlink" title="耗时操作的参与"></a>耗时操作的参与</h3>
+<p>正常的屏幕刷新率是60帧，即1秒钟绘制60帧画面。浏览器每一帧可能会做的工作，并且有对应的执行顺序：</p>
+<ul>
+<li>处理用户交互事件</li>
+<li>JS执行</li>
+<li>处理浏览器事件，例如<code>resize</code>, <code>scroll</code>等</li>
+<li>调用<code>requestAnimation</code></li>
+<li>布局</li>
+<li>绘制</li>
+</ul>
+<p>如果我们的JS代码持续占用主线程，就可能导致渲染下一帧去处理用户的交互事件不能立马处理，用户不能立马得到反馈，造成屏幕卡顿的感觉。</p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>如果把渲染过程拆分成多个子任务，每次完成一小部分后，去询问是否还有剩余时间，如果有，则继续下一个任务；如果没有，挂起当前执行的任务，将控制权交给主线程，等待主线程空闲了或者优先级较高的任务执行结束后再继续执行。这种调度式的策略被称为合作式调度(Cooperative Scheduling)，也是操作系统常用的调度策略之一。</p>
+<h2 id="React-Fiber"><a href="#React-Fiber" class="headerlink" title="React Fiber"></a>React Fiber</h2><h3 id="什么是Fiber"><a href="#什么是Fiber" class="headerlink" title="什么是Fiber"></a>什么是Fiber</h3><p>基于上文的解决方案，在React中提出了将任务分解为单元，每一个单元就算作一个<code>Fiber</code>。通过按照优先级来调度子任务，分段来更新，将同步渲染转为异步渲染。即通过将渲染任务分解为单元后，根据优先级来使用API调度，异步执行指定任务。浏览器提供了一个<code>requestIdleCallback</code>的<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/requestIdleCallback">API</a>，可以实现在主事件循环上执行后台和低优先级工作。但是其兼容性并不佳，所以React做了一个Polyfill，具体实现可以参考<a target="_blank" rel="noopener" href="https://www.huaweicloud.com/articles/35350dd296b083c022e41a043caf6bdf.html">该链接</a>。</p>
+
+
+<h3 id="Fiber架构"><a href="#Fiber架构" class="headerlink" title="Fiber架构"></a>Fiber架构</h3><p>Stack-Recocilation(React 16以前)：JSX中创建（或更新）一些元素，react会根据这些元素创建（或更新）Virtual DOM，然后根据更新前后virtual DOM的区别，去修改真正的DOM。在stack reconciler下，DOM的更新是同步的，通过递归的方式进行渲染，发现一个或几个instance有更新，会立即执行DOM更新操作。</p>
+
+
+<p>Fiber-Recocilation：React 16版本提出了一个更先进的调和器，它允许渲染进程分段完成，而不是必须一次性完成，中间可以返回至主进程控制执行其他任务。而这是通过计算部分组件树的变更，并暂停渲染更新，询问主进程是否有更高需求的绘制或者更新任务需要执行，这些高需求的任务完成后才开始渲染。这一切的实现是在代码层引入了一个新的数据结构-Fiber对象，每一个组件实例对应有一个fiber实例，此fiber实例负责管理组件实例的更新，渲染任务及与其他fiber实例的联系。</p>
+
+
+<h3 id="Fiber的工作流程"><a href="#Fiber的工作流程" class="headerlink" title="Fiber的工作流程"></a>Fiber的工作流程</h3><p>在讲解Fiber的工作流程的时候，会涉及到几个关键概念：</p>
+<ul>
+<li>Fiber Tree</li>
+<li>WorkInProgress Tree</li>
+<li>Effects List</li>
+</ul>
+<p>我们将会在接下来的示例讲解中来了解这三个关键概念。</p>
+<ol>
+<li><p>当前页面包含一个列表，通过该列表渲染出一个button和一组Item，Item中包含一个div，其中的内容为数字。通过点击button，可以使列表中的所有数字进行平方。另外有一个按钮，点击可以调节字体大小。</p>
+
+</li>
+<li><p>页面渲染完成后，就会初始化生成一个Fiber Tree（下图中current）。还会维护一个workInProgressTree。workInProgressTree用于计算更新，完成reconciliation过程。</p>
+
+</li>
+<li><p>用户点击平方按钮后，利用各个元素平方后的list调用setState，react会把当前的更新送入list组件对应的update queue中。但是react并不会立即执行对比并修改DOM的操作。而是交给scheduler去处理。</p>
+
+</li>
+<li><p>Scheduler会调用<code>reqeustIdelCallback</code>去请求空闲期的时间来处理任务</p>
+
+
+</li>
+<li><p>因为根节点上的更新队列为空，所以直接从fiber-tree上将根节点复制到workInProgressTree中去。根节点中包含指向子节点（List）的指针。</p>
+
+</li>
+<li><p>根节点没有什么更新操作，根据其child指针，接下来把List节点及其对应的update queue也复制到workinprogress中。List插入后，向其父节点返回，标志根节点的处理完成。</p>
+
+</li>
+<li><p>根节点处理完成后，react此时检查时间片是否用完。如果没有用完，根据其保存的下个工作单元的信息开始处理下一个节点List。</p>
+
+</li>
+<li><p>在获取到最新的state值后，react会更新List的state和props值，调用render，然后得到一组通过更新后的list值生成的<strong>elements</strong>。</p>
+
+</li>
+<li><p>button没有任何子节点，所以此时可以返回，并标志button处理完成。如果button有改变，需要打上tag，但是当前情况没有，只需要标记完成即可。</p>
+
+</li>
+<li><p>第二个Item shouldComponentUpdate返回true，所以需要打上tag，标志需要更新，复制div，调用render，讲div中的内容从2更新为4，因为div有更新，所以标记div。当前节点处理完成。</p>
+
+</li>
+<li><p>下一个工作单元是Item，在进入Item之前，检查时间。但这个时候时间用完了。此时react必须交换主线程，并告诉主线程以后要为其分配时间以完成剩下的操作。</p>
+
+</li>
+<li><p>当主线程任务结束，处于空闲状态，则开始执行react剩下的操作，跟上一个Item的处理流程几乎一样，完成整个fiber-tree和workInProgress的更新</p>
+
+</li>
+<li><p>完成后，Item向List返回并merge effect。</p>
+
+</li>
+<li><p>此时List向根节点返回并merge effect，所有节点都可以标记完成了。此时react将workInProgress标记为pendingCommit。</p>
+
+</li>
+<li><p>此时，要做的是还是检查时间够不够用，如果没有时间，会等到时间再去提交修改到DOM。进入到阶段2后，reacDOM会根据阶段1计算出来的effect-list来更新DOM。</p>
+</li>
+<li><p>更新完DOM之后，workInProgress就完全和DOM保持一致了，为了让当前的fiber-tree和DOM保持一直，react交换了current和workinProgress两个指针</p>
+</li>
+</ol>
+<p>至此，整个更新操作就结束了。刚才的三个概念 Fiber Tree，WorkInProgress Tree，Effects List 在其中发挥的作用是否清楚了。我们再来归纳一下：</p>
+<ul>
+<li>Fiber Tree: 用来描述增量更新所需的上下文信息</li>
+<li>WorkInProgress Tree: workInProgress tree是reconcile过程中从fiber tree建立的当前进度快照，用于断点恢复。</li>
+<li>Effects List: 每个workInProgress tree节点上都有一个effect list用来存放diff结果，当前节点更新完毕会queue收集diff结果，向上merge effect list，用于最终的DOM更新。</li>
+</ul>
+<h3 id="任务分片的优先级"><a href="#任务分片的优先级" class="headerlink" title="任务分片的优先级"></a>任务分片的优先级</h3><p>任务分片，或者叫工作单元(work unit)，是怎么拆分的呢。因为在Reconciliation阶段任务分片可以被打断，用来执行优先级高的任务。如何拆分一个任务就很重要了。</p>
+<p>为了达到任务分片的效果，就需要有一个调度器 (Scheduler) 来进行任务分配。任务的优先级有六种：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">type</span> <span class="title class_">PriorityLevel</span> = <span class="number">0</span> | <span class="number">1</span> | <span class="number">2</span> | <span class="number">3</span> | <span class="number">4</span> | <span class="number">5</span>;</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">    synchronous，<span class="comment">//0,synchronous首屏（首次渲染）用，要求尽量快，不管会不会阻塞UI线程</span></span><br><span class="line">    task，<span class="comment">//1,在next tick之前执行</span></span><br><span class="line">    animation，<span class="comment">//2,animation通过requestAnimationFrame来调度，这样在下一帧就能立即开始动画过程                                                                                                                                                                               </span></span><br><span class="line">    high，<span class="comment">//3,在不久的将来立即执行</span></span><br><span class="line">    low，<span class="comment">//4,稍微延迟执行也没关系</span></span><br><span class="line">    offscreen，<span class="comment">//5,下一次render时或scroll时才执行</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="双缓冲原理"><a href="#双缓冲原理" class="headerlink" title="双缓冲原理"></a>双缓冲原理</h3><p>通过刚才的流程我们可以了解到，在更新渲染过程中有两棵树，Fiber Tree和WIP Tree。WIP Tree用于反映要刷新到屏幕的节点状态，当WIP Tree构建结束后，会丢掉以前的Fiber Tree，将WIP作为Fiber Tree用于下次更新。</p>
+<p>这样做的好处：</p>
+<ul>
+<li>复用内部对象，如果某棵子树不需要变动，则可以整个克隆整棵子树，节省内存非配和GC的时间开销</li>
+<li>即使WIP的构建中出现问题，也不影响Fiber Tree的结构，仍然可以沿用旧树的节点，从而不影响View</li>
+</ul>
+<p>Dan在React 16的演讲中用了一个比喻，<strong>你可以将 WIP 树想象成从旧树中 Fork 出来的功能分支，你在这新分支中添加或移除特性，即使是操作失误也不会影响旧的分支。当你这个分支经过了测试和完善，就可以合并到旧分支，将其替换掉.</strong> 这或许也是命令为<strong>提交(Commite)阶段</strong>的原因。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>React Fiber提供的功能主要是：</p>
+<ul>
+<li>可切分，可中断任务。</li>
+<li>可重用各分阶段任务，且可以设置优先级。</li>
+<li>可以在父子组件任务间前进&#x2F;后退切换任务。</li>
+<li>render方法可以返回多元素（即可以返回数组）（本文暂未涉及）。</li>
+<li>支持异常边界处理异常（本文暂未涉及）。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/react/" rel="tag"># react</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/04/08/css%E8%AF%A6%E8%A7%A3/" rel="prev" title="css详解">
+      <i class="fa fa-chevron-left"></i> css详解
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2024/02/01/angular17-qa/" rel="next" title="Angular 17 - QA">
+      Angular 17 - QA <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTExMi8xNTYzOQ=="></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#React%E7%9A%84%E6%B8%B2%E6%9F%93%E6%9C%BA%E5%88%B6"><span class="nav-number">1.</span> <span class="nav-text">React的渲染机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%99%9A%E6%8B%9FDOM"><span class="nav-number">1.1.</span> <span class="nav-text">虚拟DOM</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React-Fiber%E4%B9%8B%E5%89%8D%E7%9A%84%E4%B8%8D%E8%B6%B3"><span class="nav-number">2.</span> <span class="nav-text">React Fiber之前的不足</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E6%B8%B2%E6%9F%93"><span class="nav-number">2.1.</span> <span class="nav-text">浏览器的渲染</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%80%97%E6%97%B6%E6%93%8D%E4%BD%9C%E7%9A%84%E5%8F%82%E4%B8%8E"><span class="nav-number">2.2.</span> <span class="nav-text">耗时操作的参与</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">2.3.</span> <span class="nav-text">解决方案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React-Fiber"><span class="nav-number">3.</span> <span class="nav-text">React Fiber</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFFiber"><span class="nav-number">3.1.</span> <span class="nav-text">什么是Fiber</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fiber%E6%9E%B6%E6%9E%84"><span class="nav-number">3.2.</span> <span class="nav-text">Fiber架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fiber%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-number">3.3.</span> <span class="nav-text">Fiber的工作流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%BB%E5%8A%A1%E5%88%86%E7%89%87%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7"><span class="nav-number">3.4.</span> <span class="nav-text">任务分片的优先级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8C%E7%BC%93%E5%86%B2%E5%8E%9F%E7%90%86"><span class="nav-number">3.5.</span> <span class="nav-text">双缓冲原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Roy"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Roy</p>
+  <div class="site-description" itemprop="description">即使细微如蝴蝶鼓舞，也能煽动千里之飓风。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Roy</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>

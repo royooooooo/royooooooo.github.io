@@ -1,0 +1,2641 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="CSS 学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="css详解">
+<meta property="og:url" content="http://example.com/2021/04/08/css%E8%AF%A6%E8%A7%A3/index.html">
+<meta property="og:site_name" content="蝴蝶效应">
+<meta property="og:description" content="CSS 学习">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://api2.mubu.com/v3/document_image/8304a795-b51f-4518-9f38-ed58036a0541-2681753.jpg">
+<meta property="article:published_time" content="2021-04-08T15:14:42.000Z">
+<meta property="article:modified_time" content="2024-02-01T08:54:03.969Z">
+<meta property="article:author" content="Roy">
+<meta property="article:tag" content="css">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://api2.mubu.com/v3/document_image/8304a795-b51f-4518-9f38-ed58036a0541-2681753.jpg">
+
+<link rel="canonical" href="http://example.com/2021/04/08/css%E8%AF%A6%E8%A7%A3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>css详解 | 蝴蝶效应</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">蝴蝶效应</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/08/css%E8%AF%A6%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Roy">
+      <meta itemprop="description" content="即使细微如蝴蝶鼓舞，也能煽动千里之飓风。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蝴蝶效应">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          css详解
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-04-08 23:14:42" itemprop="dateCreated datePublished" datetime="2021-04-08T23:14:42+08:00">2021-04-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-02-01 16:54:03" itemprop="dateModified" datetime="2024-02-01T16:54:03+08:00">2024-02-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="CSS-学习"><a href="#CSS-学习" class="headerlink" title="CSS 学习"></a>CSS 学习</h2><div class="title">
+
+  <div class="children">
+
+<ul>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor"></li>
+</ul>
+<span id="more"></span>
+
+<p>  层叠与继承</p>
+  </div>
+
+  <div class="children">
+
+<ul>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>层叠</p>
+</div>
+
+<div class="note mm-editor">
+
+<p>当应用两条同级别的规则到一个元素的时候，写在后面的规则会全部生效，也会替换掉前面定义过的属性</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>优先级</p>
+</div>
+
+<div class="note mm-editor">
+
+<p>浏览器会根据优先级来选择使用那个规则。例如：元素选择器不够具体，优先级就会低于类选择器</p>
+</div>
+
+<div class="children">
+
+<ul>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>计算规则</p>
+</div>
+
+<div class="children">
+
+<ul>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>直接声明在 style 属性，得分为千</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>ID 选择器，得分为百</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>类选择器，属性选择器或者伪类，得分为十</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>元素选择器或者伪元素选择器，得分为一</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>* + &gt; ~ :not 不会影响优先级</p>
+</div></li>
+</ul>
+</div></li>
+</ul>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>继承</p>
+</div>
+
+<div class="note mm-editor">
+
+<p>有些属性是可以继承的，有些则不能。例如，color 和 font-family 会被子元素继承，但是 width,margin,padding 和 border 不会被继承</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>控制继承</p>
+</div>
+
+<div class="children">
+
+<ul>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>inherit</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>initial</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>unset</p>
+</div></li>
+</ul>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>重置属性值</p>
+</div>
+
+<div class="note mm-editor">
+
+<p>使用 all 属性可以重置几乎所有属性，值可以是 inherit, initial,<br>unset, or revert</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>优先级更改</p>
+</div>
+
+<div class="note mm-editor">
+
+<p>使用!import 将会修改属性的优先级</p>
+</div></li>
+</ul>
+  </div>
+
+<ul>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>CSS 选择器</p>
+</div>
+
+<div class="children">
+
+<ul>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>选择器列表</p>
+</div>
+
+<div class="note mm-editor">
+
+<p>通过，隔开</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>选择器种类</p>
+</div>
+
+<div class="children">
+
+<ul>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>类型、类和 ID 选择器</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>标签属性选择器</p>
+</div>
+
+<div class="children">
+
+<ul>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>a[title]{ }</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>a[href&#x3D;”<a href="https://example.com"/]%7B">https://example.com&quot;\]{</a> }</p>
+</div></li>
+</ul>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>伪类与伪元素</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>运算符</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>全局选择器 *</p>
+</div></li>
+</ul>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>属性选择器</p>
+</div>
+
+<div class="children">
+
+<ul>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>值选择器</p>
+</div>
+
+<div class="children">
+
+<ul>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>a[title]</p>
+</div>
+
+<div class="note mm-editor">
+
+<p>匹配带有名为 title 属性的元素</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>a[herf&#x3D;’<a href="https://example.com'/]">https://example.com&#39;\]</a></p>
+</div>
+
+<div class="note mm-editor">
+
+<p>匹配带有名为 href 属性的元素，其值为<a href="https://example.com/">https://example.com</a></p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>p[class~&#x3D;’special’]</p>
+</div>
+
+<div class="note mm-editor">
+
+<p>匹配带有名为 class 属性的元素，其值至少有一个和 special 匹配</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>div[lang|&#x3D;’zh’]</p>
+</div>
+
+<div class="note mm-editor">
+
+<p>匹配带有名为 lang 属性的元素，其值可以为 zh，或者以 zh 开头</p>
+</div></li>
+</ul>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>子字符串匹配选择器</p>
+</div>
+
+<div class="children">
+
+<ul>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>li[class^&#x3D;’box-‘]</p>
+</div>
+
+<div class="note mm-editor">
+
+<p>匹配以 box-开头的属性元素</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>li[class$&#x3D;’-box’]</p>
+</div>
+
+<div class="note mm-editor">
+
+<p>匹配以-box 结尾的属性元素</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>li[class*&#x3D;’box’]</p>
+</div>
+
+<div class="note mm-editor">
+
+<p>匹配任意包含 box 的属性元素</p>
+</div></li>
+</ul>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>大小写敏感通过 i 关键字</p>
+</div>
+
+<div class="note mm-editor">
+
+<p>li[class^&#x3D;’a’ i]</p>
+</div></li>
+</ul>
+</div></li>
+</ul>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>伪类和伪元素</p>
+</div>
+
+<div class="note mm-editor">
+
+<p>常用列表见<br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Learn/CSS/Building_blocks/Selectors/Pseudo-classes_and_pseudo-elements">链接</a></p>
+</div>
+
+<div class="children">
+
+<ul>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>简单伪类</p>
+</div>
+
+<div class="children">
+
+<ul>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>:first-child</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>:last-child</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>:only-child</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>:invalid &#x2F; :valid</p>
+</div></li>
+</ul>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>用户行为伪类</p>
+</div>
+
+<div class="children">
+
+<ul>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>:hover</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>:focus</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>:visited</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>:link</p>
+</div></li>
+</ul>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>伪元素</p>
+</div>
+
+<div class="children">
+
+<ul>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>::first-line</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>::before</p>
+</div>
+
+<div class="note mm-editor">
+
+<p>通常配合 content 属性使用，用以插入内容</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>::after</p>
+</div></li>
+</ul>
+</div></li>
+</ul>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>关系选择器</p>
+</div>
+
+<div class="children">
+
+<ul>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>后代选择器</p>
+</div>
+
+<div class="note mm-editor">
+
+<p>使用空格分隔，例如 body article p</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>子代关系选择器</p>
+</div>
+
+<div class="note mm-editor">
+
+<p>使用&gt;分隔，例如 ul &gt; li{}，只会选中 ul 的直接子代中的 li 元素</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>邻接兄弟选择器</p>
+</div>
+
+<div class="note mm-editor">
+
+<p>使用+分隔，例如 a + b， 只会选中某个前一个兄弟节点是 a 的 b 元素</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>通用兄弟选择器</p>
+</div>
+
+<div class="note mm-editor">
+
+<p>使用~分隔，例如 p ~ img，选中所有 p 元素之后的 img 元素</p>
+</div></li>
+</ul>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>盒模型</p>
+</div>
+
+<div class="children">
+
+<ul>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>块盒子(Block box)</p>
+</div>
+
+<div class="note mm-editor">
+
+<p>例如：常见的 h1, p 标签</p>
+</div>
+
+<div class="children">
+
+<ul>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>会在内联的方向上扩展并占据父容器在该方向上的所有可用空间，绝大多数下会和父容器一样宽</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>每个块盒子都会换行</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>width 和 height 属性可以发挥作用</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>内边距（padding）, 外边距（margin） 和 边框（border）<br>会将其他元素从当前盒子周围“推开”</p>
+</div></li>
+</ul>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>内联盒子(Inline box)</p>
+</div>
+
+<div class="note mm-editor">
+
+<p>例如：常见的 a,span,em,strong 标签</p>
+</div>
+
+<div class="children">
+
+<ul>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>内联盒子不会产生换行</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>width 和 height 属性没有作用</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>垂直方向的内边距、外边距以及边框会被应用但是不会把其他处于<br>inline 状态的盒子推开</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>水平方向的内边距、外边距以及边框会被应用且会把其他处于 inline<br>状态的盒子推开</p>
+</div></li>
+</ul>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>盒模型的组成</p>
+</div>
+
+<div class="children">
+
+<ul>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>Content box</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>Padding box</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>Border box</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>Margin box</p>
+</div></li>
+</ul>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>外边距折叠</p>
+</div>
+
+<div class="note mm-editor">
+
+<p>如果你有两个外边距相接的元素，这些外边距将合并为一个外边距，即最大的单个外边距的大小</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>显示类型</p>
+</div>
+
+<div class="children">
+
+<ul>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>display:block</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>display:inline</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>display:flex</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>display:inline-flex</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>display:inline-block</p>
+</div></li>
+</ul>
+</div></li>
+</ul>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>弹性盒子</p>
+</div>
+
+<ul>
+<li><img src="https://api2.mubu.com/v3/document_image/8304a795-b51f-4518-9f38-ed58036a0541-2681753.jpg"></li>
+</ul>
+<div class="children">
+
+<ul>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>方向</p>
+</div>
+
+<div class="children">
+
+<ul>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>flex-direction: column</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>flex-direction:row</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>flex-direction:row-reverse</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>flex-direction:column-reverse</p>
+</div></li>
+</ul>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>换行</p>
+</div>
+
+<div class="children">
+
+<ul>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>flex-wrap:wrap</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>flex: 200px</p>
+</div>
+
+<div class="note mm-editor">
+
+<p>意味每个子元素宽度至少是 200px</p>
+</div></li>
+</ul>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>flex-flow: row wrap</p>
+</div>
+
+<div class="note mm-editor">
+
+<p>方向和换行的缩写</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>动态尺寸</p>
+</div>
+
+<div class="note mm-editor">
+
+<p>flex: 1, flex: 2 表示子元素的空间占比</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>水平和垂直对齐</p>
+</div>
+
+<div class="note mm-editor">
+
+<p>div{ display: flex; align-item: center; justify-content:<br>space-around}</p>
+</div>
+
+<div class="children">
+
+<ul>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>align-item</p>
+</div>
+
+<div class="note mm-editor">
+
+<p>控制子项在交叉轴上的位置</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>justify-content</p>
+</div>
+
+<div class="note mm-editor">
+
+<p>控制子项在主轴上的位置，space-around 可以设置子项沿主轴均匀分布，space-between 也是均匀分布，但是不会在两端留下空间</p>
+</div></li>
+</ul>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>排序</p>
+</div>
+
+<div class="note mm-editor">
+
+<p>通过设置 order 来调整顺序，order 值越大，显示更靠后</p>
+</div></li>
+</ul>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>处理不同方向的文本</p>
+</div>
+
+<div class="note mm-editor">
+
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Learn/CSS/Building_blocks/Handling_different_text_directions">https://developer.mozilla.org/zh-CN/docs/Learn/CSS/Building_blocks&#x2F;Handling_different_text_directions</a></p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>溢出</p>
+</div>
+
+<div class="children">
+
+<ul>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>overflow 属性</p>
+</div>
+
+<div class="children">
+
+<ul>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>hidden</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>scorll</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>overflow-y:scorll</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>overlow-x</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>auto</p>
+</div></li>
+</ul>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>尽量在开发阶段就识别到溢出问题</p>
+</div></li>
+</ul>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>值与单位</p>
+</div>
+
+<div class="children">
+
+<ul>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>数值</p>
+</div>
+
+<div class="children">
+
+<ul>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>integer</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>number</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>dimension</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>percentage</p>
+</div></li>
+</ul>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>长度</p>
+</div>
+
+<div class="children">
+
+<ul>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>绝对长度</p>
+</div>
+
+<div class="children">
+
+<ul>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>cm</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>mm</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>Q</p>
+</div>
+
+<div class="note mm-editor">
+
+<p>四分之一毫米</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>in</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>pc</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>pt</p>
+</div>
+
+<div class="note mm-editor">
+
+<p>点</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>px</p>
+</div>
+
+<div class="note mm-editor">
+
+<p>像素</p>
+</div></li>
+</ul>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>相对长度</p>
+</div>
+
+<div class="children">
+
+<ul>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>em</p>
+</div>
+
+<div class="note mm-editor">
+
+<p>在 font-size 中使用的是相对于父元素的字体大小，在其他属性中使用是相对于自身的字体大小，如 width</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>ex</p>
+</div>
+
+<div class="note mm-editor">
+
+<p>字符”x”的高度</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>ch</p>
+</div>
+
+<div class="note mm-editor">
+
+<p>字符 0 的宽度</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>rem</p>
+</div>
+
+<div class="note mm-editor">
+
+<p>根元素的字体大小</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>lh</p>
+</div>
+
+<div class="note mm-editor">
+
+<p>元素的 line-height</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>vw</p>
+</div>
+
+<div class="note mm-editor">
+
+<p>视窗宽度的 1%</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>vh</p>
+</div>
+
+<div class="note mm-editor">
+
+<p>视窗高度的 1%</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>vmin</p>
+</div>
+
+<div class="note mm-editor">
+
+<p>视窗较小尺寸的 1%</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>vmax</p>
+</div>
+
+<div class="note mm-editor">
+
+<p>视窗较大尺寸的 1%</p>
+</div></li>
+</ul>
+</div></li>
+</ul>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>颜色</p>
+</div>
+
+<div class="children">
+
+<ul>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>十六进制 RGB</p>
+</div>
+
+<div class="note mm-editor">
+
+<p>#02798b</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>RGB 和 RGBA</p>
+</div>
+
+<div class="note mm-editor">
+
+<p>rgb(2, 121, 139), rgba(2, 121, 139,.3)</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>HSL 和 HSLA 的值</p>
+</div></li>
+</ul>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>图片</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>位置</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>字符串和标识符</p>
+</div>
+</li>
+<li><div class="bullet">
+
+<div class="bullet-dot">
+
+</div>
+
+</div>
+
+<div class="content mm-editor">
+
+<p>函数</p>
+</div></li>
+</ul>
+</div>
+
+</div></li>
+</ul>
+<div class="publish">
+</div>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/css/" rel="tag"># css</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/12/07/package-name-vs-applicationId/" rel="prev" title="Jetpack的Databinding使用">
+      <i class="fa fa-chevron-left"></i> Jetpack的Databinding使用
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/04/22/react_fiber/" rel="next" title="图解 React Fiber 机制">
+      图解 React Fiber 机制 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTExMi8xNTYzOQ=="></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.</span> <span class="nav-text">CSS 学习</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Roy"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Roy</p>
+  <div class="site-description" itemprop="description">即使细微如蝴蝶鼓舞，也能煽动千里之飓风。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Roy</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>

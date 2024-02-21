@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="前言根据《代码整洁之道》提取的一些书籍中的要点，根据自己习惯整理，可能对于他人不适用。整理了大部分要点，关于代码重构和代码味道的部分没有整理，在读code smell的时候再整理这部分。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《代码整洁之道》要点整理">
+<meta property="og:url" content="http://example.com/2020/11/23/clean-code/index.html">
+<meta property="og:site_name" content="蝴蝶效应">
+<meta property="og:description" content="前言根据《代码整洁之道》提取的一些书籍中的要点，根据自己习惯整理，可能对于他人不适用。整理了大部分要点，关于代码重构和代码味道的部分没有整理，在读code smell的时候再整理这部分。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-11-23T14:57:47.000Z">
+<meta property="article:modified_time" content="2024-02-01T08:54:03.968Z">
+<meta property="article:author" content="Roy">
+<meta property="article:tag" content="code">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2020/11/23/clean-code/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>《代码整洁之道》要点整理 | 蝴蝶效应</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">蝴蝶效应</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/23/clean-code/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Roy">
+      <meta itemprop="description" content="即使细微如蝴蝶鼓舞，也能煽动千里之飓风。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蝴蝶效应">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          《代码整洁之道》要点整理
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-23 22:57:47" itemprop="dateCreated datePublished" datetime="2020-11-23T22:57:47+08:00">2020-11-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-02-01 16:54:03" itemprop="dateModified" datetime="2024-02-01T16:54:03+08:00">2024-02-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Development/" itemprop="url" rel="index"><span itemprop="name">Development</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>根据《代码整洁之道》提取的一些书籍中的要点，根据自己习惯整理，可能对于他人不适用。整理了大部分要点，关于代码重构和代码味道的部分没有整理，在读code smell的时候再整理这部分。</p>
+<span id="more"></span>
+
+<h4 id="整洁代码"><a href="#整洁代码" class="headerlink" title="整洁代码"></a>整洁代码</h4><ul>
+<li><p>代码的不可替代性<br>代码呈现了需求的细节，只有代码能够将需求明确到机器可以执行的程度</p>
+</li>
+<li><p>什么是糟糕的代码<br>可能是因为赶时间，来不及做代码的重构，想要留到后面再做，导致代码越来越“混乱”。稍后等于用不（Later equals never）</p>
+</li>
+<li><p>糟糕代码的代价</p>
+<ul>
+<li><p>后期无法清理</p>
+</li>
+<li><p>新人难以上手</p>
+</li>
+<li><p>生产力不断下降</p>
+</li>
+</ul>
+</li>
+<li><p>整洁代码的特性</p>
+<ul>
+<li><p>优雅（命名，不重复）<br>读代码，能够让人愉悦，而不是眉头紧锁</p>
+</li>
+<li><p>效率（测试）<br>尽量不浪费运算周期</p>
+</li>
+<li><p>完善错误处理<br>在细节上花心思</p>
+</li>
+<li><p>只做好一件事（函数大小，不发散）<br>每个函数、每个类和每个模块都应该全神贯注与一件事，不受四周细节的干扰和污染</p>
+</li>
+<li><p>可增补性</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h4><ul>
+<li><p>使用异常</p>
+</li>
+<li><p>函数不返回null</p>
+</li>
+<li><p>参数不传递null</p>
+</li>
+<li><p>对象和数据结构</p>
+<ul>
+<li><p>对象暴露行为，隐藏数据</p>
+</li>
+<li><p>数据结构暴露数据，没有明显的行为</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h4><ul>
+<li><p>善用IDE格式化工具</p>
+</li>
+<li><p>团队规则统一</p>
+</li>
+<li><p>注释</p>
+<ul>
+<li><p>注释不能美化代码</p>
+</li>
+<li><p>尽量用代码来阐述</p>
+</li>
+<li><p>可用的注释</p>
+<ul>
+<li><p>法律信息</p>
+</li>
+<li><p>对意图的解释</p>
+</li>
+<li><p>警示</p>
+</li>
+<li><p>Todo注释</p>
+</li>
+<li><p>代码Doc</p>
+</li>
+</ul>
+</li>
+<li><p>需要避免的注释</p>
+<ul>
+<li><p>多余的注释</p>
+</li>
+<li><p>误导性注释</p>
+</li>
+<li><p>循规式注释</p>
+</li>
+<li><p>可以用函数或变量代替的注释</p>
+</li>
+<li><p>注释掉的代码</p>
+</li>
+<li><p>和当前代码没有联系的注释</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h4><ul>
+<li><p>短小<br>最大行数20</p>
+</li>
+<li><p>只做一件事<br>函数应该做一件事，并且做好这件事。判断函数是否不止做了一件事，可以看是否还能拆出一个函数，而该函数不仅是重新诠释实现</p>
+</li>
+<li><p>switch语句<br>尽量将switch语句埋到抽象工厂下面，用多态代替</p>
+</li>
+<li><p>使用描述性的名称</p>
+</li>
+<li><p>函数参数不要超过3个<br>理解参数的成本，测试的成本</p>
+</li>
+<li><p>抽离Try&#x2F;Catch代码块</p>
+</li>
+<li><p>结构化编程<br>代码块应该有一个入口、一个出口</p>
+</li>
+</ul>
+<h4 id="命名"><a href="#命名" class="headerlink" title="命名"></a>命名</h4><ul>
+<li><p>名副其实<br>如果名称需要注释来补充，那么它就不算名副其实</p>
+</li>
+<li><p>避免误导</p>
+</li>
+<li><p>有意义的区分<br>如a作为域内变量，the用于函数参数</p>
+</li>
+<li><p>使用可搜索的名称</p>
+</li>
+<li><p>避免使用编码<br>如接口需要加 I 前缀，成员变量加m_前缀</p>
+</li>
+<li><p>类名<br>类名和对象名应该是名词或者名词短语，指代它代表的含义，不应该是动词</p>
+</li>
+<li><p>方法名<br>方法名应该是动词或者动词短语，指代要做的事情</p>
+</li>
+<li><p>每个概念对应一个词</p>
+</li>
+<li><p>添加有意义的语境</p>
+</li>
+</ul>
+<h4 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h4><ul>
+<li><p>TDD三定律</p>
+<ul>
+<li><p>在编写不能通过的单元测试前，不可编写生产代码</p>
+</li>
+<li><p>只可编写刚好无法通过的单元测试，不能编译也算不通过</p>
+</li>
+<li><p>只可编写刚好足以通过当前失败测试的生产代码</p>
+</li>
+</ul>
+</li>
+<li><p>保持可读性</p>
+</li>
+<li><p>Given-When-Then的结构</p>
+</li>
+<li><p>每个测试只包含一个概念</p>
+</li>
+<li><p>F，I，R，S，T（Fast, Independent, Repeatable, Self-Validating, Timely）</p>
+</li>
+</ul>
+<h4 id="类"><a href="#类" class="headerlink" title="类"></a>类</h4><ul>
+<li><p>短小<br>避免出现supper class</p>
+</li>
+<li><p>单一权责原则</p>
+</li>
+<li><p>内聚</p>
+</li>
+</ul>
+<h4 id="系统"><a href="#系统" class="headerlink" title="系统"></a>系统</h4><ul>
+<li><p>工厂<br>不关心其内部实现</p>
+</li>
+<li><p>依赖注入(DI)</p>
+</li>
+<li><p>优化决策</p>
+</li>
+<li><p>迭进</p>
+<ul>
+<li><p>简单设计</p>
+<ul>
+<li><p>运行所有测试</p>
+</li>
+<li><p>不可重复</p>
+</li>
+<li><p>表达意图</p>
+</li>
+<li><p>尽可能减少类和方法的数量</p>
+</li>
+<li><p>以上规则按其重要程度排列</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>并发</p>
+<ul>
+<li><p>并发相关代码有自己的开发、修改和调优生命周期</p>
+</li>
+<li><p>开发相关代码有自己要对付的挑战，和并发相关代码不同，而且往往更为困难</p>
+</li>
+<li><p>并发防御原则</p>
+<ul>
+<li><p>限制数据作用域</p>
+</li>
+<li><p>单一权责</p>
+</li>
+<li><p>使用数据副本</p>
+</li>
+<li><p>线程尽可能独立</p>
+</li>
+</ul>
+</li>
+<li><p>执行模型</p>
+<ul>
+<li><p>基础定义</p>
+<ul>
+<li><p>限定资源</p>
+</li>
+<li><p>互斥</p>
+</li>
+<li><p>线程饥饿</p>
+</li>
+<li><p>死锁</p>
+</li>
+<li><p>活锁</p>
+</li>
+</ul>
+</li>
+<li><p>生产者-消费者模型</p>
+</li>
+<li><p>读者-作者模型</p>
+</li>
+<li><p>宴席哲学家</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><ul>
+<li><p>足够的测试</p>
+</li>
+<li><p>使用覆盖率工具</p>
+</li>
+<li><p>别略过小测试</p>
+</li>
+<li><p>被忽略的测试就是对不确定事物的疑问</p>
+</li>
+<li><p>测试边界条件</p>
+</li>
+<li><p>全面测试相近的缺陷</p>
+</li>
+<li><p>测试失败的模式有启发性</p>
+</li>
+<li><p>测试覆盖率的模式有启发性</p>
+</li>
+<li><p>测试应该快速</p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/code/" rel="tag"># code</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/11/14/thoughtworks-agile/" rel="prev" title="Thoughtworks的敏捷开发">
+      <i class="fa fa-chevron-left"></i> Thoughtworks的敏捷开发
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/11/23/data-structure/" rel="next" title="《大话数据结构》要点整理">
+      《大话数据结构》要点整理 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTExMi8xNTYzOQ=="></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B4%E6%B4%81%E4%BB%A3%E7%A0%81"><span class="nav-number">2.</span> <span class="nav-text">整洁代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">错误处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%BC%E5%BC%8F"><span class="nav-number">4.</span> <span class="nav-text">格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%BD%E6%95%B0"><span class="nav-number">5.</span> <span class="nav-text">函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%91%BD%E5%90%8D"><span class="nav-number">6.</span> <span class="nav-text">命名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95"><span class="nav-number">7.</span> <span class="nav-text">单元测试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B1%BB"><span class="nav-number">8.</span> <span class="nav-text">类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F"><span class="nav-number">9.</span> <span class="nav-text">系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95"><span class="nav-number">10.</span> <span class="nav-text">测试</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Roy"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Roy</p>
+  <div class="site-description" itemprop="description">即使细微如蝴蝶鼓舞，也能煽动千里之飓风。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Roy</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>

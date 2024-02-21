@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="前言Obsidian 相信大家应该不陌生了，一款使用 Markdown 语法的双链笔记工具。个人免费使用，丰富的插件系统，知识快速链接，都是其出色的地方。当然它也有一些值得诟病的地方，例如界面简单，新手打开感觉就是一个普通笔记本，和隔壁 Notion 的初始的精美相比，实在是“简陋”。因此大部分小伙伴都是了解一段时间后要么放弃，要么转战其他笔记工具。因此这篇文章就是告诉大家如何利用丰富的插件库来打">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Obsidian开箱即用库">
+<meta property="og:url" content="http://example.com/2024/02/21/Obsidian%E5%BC%80%E7%AE%B1%E5%8D%B3%E7%94%A8%E5%BA%93/index.html">
+<meta property="og:site_name" content="蝴蝶效应">
+<meta property="og:description" content="前言Obsidian 相信大家应该不陌生了，一款使用 Markdown 语法的双链笔记工具。个人免费使用，丰富的插件系统，知识快速链接，都是其出色的地方。当然它也有一些值得诟病的地方，例如界面简单，新手打开感觉就是一个普通笔记本，和隔壁 Notion 的初始的精美相比，实在是“简陋”。因此大部分小伙伴都是了解一段时间后要么放弃，要么转战其他笔记工具。因此这篇文章就是告诉大家如何利用丰富的插件库来打">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2024/02/21/Obsidian%E5%BC%80%E7%AE%B1%E5%8D%B3%E7%94%A8%E5%BA%93/Pasted_image_20240220073714.png">
+<meta property="og:image" content="http://example.com/2024/02/21/Obsidian%E5%BC%80%E7%AE%B1%E5%8D%B3%E7%94%A8%E5%BA%93/Pasted_image_20240220074025.png">
+<meta property="og:image" content="http://example.com/2024/02/21/Obsidian%E5%BC%80%E7%AE%B1%E5%8D%B3%E7%94%A8%E5%BA%93/Pasted_image_20240220074712.png">
+<meta property="og:image" content="http://example.com/2024/02/21/Obsidian%E5%BC%80%E7%AE%B1%E5%8D%B3%E7%94%A8%E5%BA%93/Pasted_image_20240220075210.png">
+<meta property="og:image" content="http://example.com/2024/02/21/Obsidian%E5%BC%80%E7%AE%B1%E5%8D%B3%E7%94%A8%E5%BA%93/Pasted_image_20240220151103.png">
+<meta property="og:image" content="http://example.com/2024/02/21/Obsidian%E5%BC%80%E7%AE%B1%E5%8D%B3%E7%94%A8%E5%BA%93/Pasted_image_20240220153533.png">
+<meta property="og:image" content="http://example.com/2024/02/21/Obsidian%E5%BC%80%E7%AE%B1%E5%8D%B3%E7%94%A8%E5%BA%93/Pasted_image_20240220154416.png">
+<meta property="og:image" content="http://example.com/2024/02/21/Obsidian%E5%BC%80%E7%AE%B1%E5%8D%B3%E7%94%A8%E5%BA%93/Pasted_image_20240220154935.png">
+<meta property="og:image" content="http://example.com/2024/02/21/Obsidian%E5%BC%80%E7%AE%B1%E5%8D%B3%E7%94%A8%E5%BA%93/Pasted_image_20240220155231.png">
+<meta property="og:image" content="http://example.com/2024/02/21/Obsidian%E5%BC%80%E7%AE%B1%E5%8D%B3%E7%94%A8%E5%BA%93/Pasted_image_20240220155315.png">
+<meta property="og:image" content="http://example.com/2024/02/21/Obsidian%E5%BC%80%E7%AE%B1%E5%8D%B3%E7%94%A8%E5%BA%93/Pasted_image_20240220160121.png">
+<meta property="og:image" content="http://example.com/2024/02/21/Obsidian%E5%BC%80%E7%AE%B1%E5%8D%B3%E7%94%A8%E5%BA%93/Pasted_image_20240221152931.png">
+<meta property="og:image" content="http://example.com/2024/02/21/Obsidian%E5%BC%80%E7%AE%B1%E5%8D%B3%E7%94%A8%E5%BA%93/Pasted_image_20240221153509.png">
+<meta property="og:image" content="http://example.com/2024/02/21/Obsidian%E5%BC%80%E7%AE%B1%E5%8D%B3%E7%94%A8%E5%BA%93/Pasted_image_20240221153756.png">
+<meta property="article:published_time" content="2024-02-21T07:45:25.000Z">
+<meta property="article:modified_time" content="2024-02-21T08:04:28.773Z">
+<meta property="article:author" content="Roy">
+<meta property="article:tag" content="Utils">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2024/02/21/Obsidian%E5%BC%80%E7%AE%B1%E5%8D%B3%E7%94%A8%E5%BA%93/Pasted_image_20240220073714.png">
+
+<link rel="canonical" href="http://example.com/2024/02/21/Obsidian%E5%BC%80%E7%AE%B1%E5%8D%B3%E7%94%A8%E5%BA%93/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Obsidian开箱即用库 | 蝴蝶效应</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">蝴蝶效应</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/02/21/Obsidian%E5%BC%80%E7%AE%B1%E5%8D%B3%E7%94%A8%E5%BA%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Roy">
+      <meta itemprop="description" content="即使细微如蝴蝶鼓舞，也能煽动千里之飓风。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蝴蝶效应">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Obsidian开箱即用库
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-02-21 15:45:25 / 修改时间：16:04:28" itemprop="dateCreated datePublished" datetime="2024-02-21T15:45:25+08:00">2024-02-21</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Obsidian 相信大家应该不陌生了，一款使用 Markdown 语法的双链笔记工具。个人免费使用，丰富的插件系统，知识快速链接，都是其出色的地方。当然它也有一些值得诟病的地方，例如界面简单，新手打开感觉就是一个普通笔记本，和隔壁 Notion 的初始的精美相比，实在是“简陋”。因此大部分小伙伴都是了解一段时间后要么放弃，要么转战其他笔记工具。因此这篇文章就是告诉大家如何利用丰富的插件库来打造专属个人的笔记本。文章最后会附上懒人包，开箱即用。</p>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>可以到官网下载对应平台的安装包，几乎做到了全平台覆盖，附上<a target="_blank" rel="noopener" href="https://obsidian.md/">官网地址</a>。</p>
+<span id="more"></span>
+<img src="/2024/02/21/Obsidian%E5%BC%80%E7%AE%B1%E5%8D%B3%E7%94%A8%E5%BA%93/Pasted_image_20240220073714.png" class="">
+
+
+<h2 id="建立工作区"><a href="#建立工作区" class="headerlink" title="建立工作区"></a>建立工作区</h2><img src="/2024/02/21/Obsidian%E5%BC%80%E7%AE%B1%E5%8D%B3%E7%94%A8%E5%BA%93/Pasted_image_20240220074025.png" class="">
+<ol>
+<li><strong>Create new  vault</strong> ：新建一个工作区，如果之前没有使用过就新建一个工作区，用于存放对应的 markdown 文件。</li>
+<li><strong>Open folder as vault</strong> ：如果之前有建立过工作区，或者从其他人那里获取到了模板，可以通过这个选项打开。</li>
+<li><strong>Open vault from Obsidian Sync</strong> ：如果之前升级过个人账户，可以通过这个选项同步远端笔记（免费版也可以通过插件做到）。<br>语言选择可以自己切换，支持简体中文。</li>
+</ol>
+<h2 id="新建笔记"><a href="#新建笔记" class="headerlink" title="新建笔记"></a>新建笔记</h2><p>点击 <strong>文件列表</strong> 中的 <strong>新建笔记</strong> 即可创建一篇新的笔记，也可以通过 <code>cmd + p</code>的快捷键打开控制台搜索 <strong>新建笔记</strong> 的命令来创建。文件创建后为 <code>.md</code> 格式文件，因此支持 md 语法，不清楚该语法的朋友可以参考<a target="_blank" rel="noopener" href="https://markdown.com.cn/basic-syntax/">这里</a>。</p>
+<img src="/2024/02/21/Obsidian%E5%BC%80%E7%AE%B1%E5%8D%B3%E7%94%A8%E5%BA%93/Pasted_image_20240220074712.png" class="">
+<img src="/2024/02/21/Obsidian%E5%BC%80%E7%AE%B1%E5%8D%B3%E7%94%A8%E5%BA%93/Pasted_image_20240220075210.png" class="">
+
+<p>不同的笔记之间支持双链，双链笔记的好处不在这篇文章的探讨范围，有兴趣可以<a target="_blank" rel="noopener" href="https://sspai.com/post/67996">参考</a></p>
+<h2 id="插件生态"><a href="#插件生态" class="headerlink" title="插件生态"></a>插件生态</h2><p>基础的笔记功能就是这样，如果只看到这里，可能觉得这个工具也并没有什么出彩的地方。接下来就进入更容易引起大家兴趣的部分，如何使用其丰富的插件库来打造个人的工作区。</p>
+<h2 id="笔记核心"><a href="#笔记核心" class="headerlink" title="笔记核心"></a>笔记核心</h2><p>笔记到底记什么，我想每个人都有自己不同的看法，找到属于自己的记笔记的方式需要一段时间的探索。那么作为刚入门的萌新，我们可以参考其他人记笔记的方式来学习，模仿也是一种学习。</p>
+<blockquote>
+<p>如果你觉得别人讲的道理有理有据，而自己暂时无法反驳，碰巧自己又非常想做这件事，那就相信他们说的是对的，然后笃定地行动</p>
+</blockquote>
+<p>我个人喜欢把笔记分为以下几个部分：</p>
+<ol>
+<li>每日日记</li>
+<li>闪念笔记</li>
+<li>读书笔记</li>
+<li>任务清单</li>
+<li>文章剪藏<br>接下来我会展开讲讲每部分的功能，以及如何通过插件整合到 Obsidian 中。</li>
+</ol>
+<h3 id="日记"><a href="#日记" class="headerlink" title="日记"></a>日记</h3><p>日记大家肯定都不陌生，小时候可能就被老师要求过每日写日记，但是却没想过写日记对我们来说有什么好处。</p>
+<ol>
+<li>增强注意力。现在每天都有很多琐碎的事情，写日记的时候需要你专注回想一天经历的有意思的事情，提升专注能力</li>
+<li>实现目标。很多人在年初的时候制订了很多目标，但是无法跟踪，只能在年底看结果，而日记可以通过分解并跟踪目标，从而更清晰目标的完成情况</li>
+<li>记忆力和理解能力。好记性不如烂笔头，将事情记录下来相当于在脑袋里面又加深了一次印象</li>
+<li>缓解压力。用语言文字“给情绪贴标签”，能启动大脑情绪自我控制功能，进而缓解紧张，释放压力</li>
+</ol>
+<p>日记，顾名思义，记录当天发生的有意思的事情。这是我的每日日记模板，参考了B站一位朋友的模板，做了一些自己的调整，文章最后会把他创建的懒人包也分享出来。</p>
+<img src="/2024/02/21/Obsidian%E5%BC%80%E7%AE%B1%E5%8D%B3%E7%94%A8%E5%BA%93/Pasted_image_20240220151103.png" class="">
+
+<p>其中分为 <strong>今日主题</strong>， <strong>感恩三件事</strong>， <strong>任务清单</strong>， <strong>随笔感悟</strong>， <strong>读书笔记</strong></p>
+<h3 id="今日主题"><a href="#今日主题" class="headerlink" title="今日主题"></a>今日主题</h3><p>今天发生的三件影响自己的事情，例如和许久未见的好朋友见面，认识了一位很感兴趣的新朋友，或者完成了一件很重要的事情。只要是影响到自己的事情都可以记录，如果没有发生，也不强求填写，写日记需要放松，而不是做科研。<br>最后可以总结一下今天的感受，几句话就行，不需要正式的语气，按照个人习惯就好。</p>
+<h3 id="感恩三件事"><a href="#感恩三件事" class="headerlink" title="感恩三件事"></a>感恩三件事</h3><p>我们知道世界各地都有和感恩相关的节日，例如美国的“感恩节“，韩国的”仲秋节“，以色列的”住棚节“。中国也有”父亲节“，”母亲节“，”教师节“，并且自古以来就教育人们要学会感恩，”滴水之恩，涌泉相报“。那么人为什么要感恩？表达感恩，是积极心理学的一部分。感恩心态能让人更积极、正面，凡事往好处想，而不是总被一些烦躁的事情困住，从而影响睡眠。<br>这里的感恩三件事就是要记录下让你有感恩想法的任何其他事情，可以是人（xx帮助我做了一件xx事），可以是物（xx工具帮助了我），可以是风景（xx地方的风景很漂亮，让我心情很好），也可以是天气（xx天气是我最爱的）。</p>
+<h3 id="任务清单"><a href="#任务清单" class="headerlink" title="任务清单"></a>任务清单</h3><p>这里使用的是 Obsidian 社区插件中的 Tasks，可以设置对应的创建时间，优先级，开始时间，结束时间等。可以通过其提供的语法很快速的查询对应的任务。</p>
+<p><strong>待完成</strong><br>通过插件提供的语法，查询之前遗留的任务。如果任务不重要，可以重新设置完成时间或者直接关闭任务。</p>
+<p><strong>Today</strong><br>今天创建的任务，通过加入 QuickAdd 插件，可以实现一个快捷键将任务插入到当前页面。</p>
+<img src="/2024/02/21/Obsidian%E5%BC%80%E7%AE%B1%E5%8D%B3%E7%94%A8%E5%BA%93/Pasted_image_20240220153533.png" class="">
+
+<h3 id="随笔感悟"><a href="#随笔感悟" class="headerlink" title="随笔感悟"></a>随笔感悟</h3><p>不知道大家有没有这样的经历，当你专注在做一件事情的时候，脑袋里蹦出了另一个想法，于是你立马转手去做了另一件事情，导致本来专注的状态被打破。或者突然间有了一个很好的想法，过了一段时间却怎么也想不起来了。这种情况就需要随手记录下来。写下来以后你就不会那么着急去马上完成，因为你知道可以完成手中的事情后再去回顾它。许多散碎的想法拼接在一起可能就能形成新的灵感，这就是闪念笔记的好处。<br>这里我使用的是插件 Memo，设置对应的快捷键，快速的打开并且记录到 Memo 窗口，并且会自动同步到每日笔记的 <strong>随笔感悟</strong> 中，这样每天查看日记的时候，就能捡回那些灵感，或者回忆起某件事情。</p>
+<img src="/2024/02/21/Obsidian%E5%BC%80%E7%AE%B1%E5%8D%B3%E7%94%A8%E5%BA%93/Pasted_image_20240220154416.png" class="">
+<h3 id="读书笔记"><a href="#读书笔记" class="headerlink" title="读书笔记"></a>读书笔记</h3><p>Obsidian 有微信读书的插件，会把你对应书的高亮和评论同步过来，并且通过设置，可以同步当天的高亮和评论到你的每日日记中，这样每天阅读日记的时候也可以回顾一下这些影响你的句子或者想法。</p>
+<img src="/2024/02/21/Obsidian%E5%BC%80%E7%AE%B1%E5%8D%B3%E7%94%A8%E5%BA%93/Pasted_image_20240220154935.png" class="">
+
+<p>除了每日日记，也可以设置周度日记，月度日记，年度日记。</p>
+<img src="/2024/02/21/Obsidian%E5%BC%80%E7%AE%B1%E5%8D%B3%E7%94%A8%E5%BA%93/Pasted_image_20240220155231.png" class="">
+<img src="/2024/02/21/Obsidian%E5%BC%80%E7%AE%B1%E5%8D%B3%E7%94%A8%E5%BA%93/Pasted_image_20240220155315.png" class="">
+
+<p>这是我的周度笔记，通过插件 <code>Templater</code> + <code>Dataview</code> 可以实现自动从这一周的日记中抓取信息。在每日笔记中添加 🍅 tag，可以记录每周番茄工作法的时间。</p>
+<h2 id="文章剪藏"><a href="#文章剪藏" class="headerlink" title="文章剪藏"></a>文章剪藏</h2><p>Obsidian 的 <code>Ominivore</code> 插件可以实现同步文章，通过<code>Dataview</code>插件就可以实现每周笔记中看到的<strong>剪藏文章汇总</strong>的模块。</p>
+<img src="/2024/02/21/Obsidian%E5%BC%80%E7%AE%B1%E5%8D%B3%E7%94%A8%E5%BA%93/Pasted_image_20240220160121.png" class="">
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="ChatGPT"><a href="#ChatGPT" class="headerlink" title="ChatGPT"></a>ChatGPT</h3><p>通过插件 <code>ChatGPT MD</code> 实现了 OpenAI API 查询。需要输入用户自己的密钥，可以搜索如何获取 OpenAI 密钥。</p>
+<h3 id="Periodic-Notes"><a href="#Periodic-Notes" class="headerlink" title="Periodic Notes"></a>Periodic Notes</h3><p>该插件可以实现日度、周度、月度、季度、年度笔记。已经整合到懒人包，通过命令打开对应的笔记。</p>
+<img src="/2024/02/21/Obsidian%E5%BC%80%E7%AE%B1%E5%8D%B3%E7%94%A8%E5%BA%93/Pasted_image_20240221152931.png" class="">
+
+<h3 id="Spaced-Repetition"><a href="#Spaced-Repetition" class="headerlink" title="Spaced Repetition"></a>Spaced Repetition</h3><p>该插件可以实现快速回顾，帮助你快速回顾。只需要在笔记中加入 <code>?,</code> <code>::</code> 等，即可自动生成卡片，每天可以回顾卡片。</p>
+<img src="/2024/02/21/Obsidian%E5%BC%80%E7%AE%B1%E5%8D%B3%E7%94%A8%E5%BA%93/Pasted_image_20240221153509.png" class="">
+
+<h3 id="Excaildraw"><a href="#Excaildraw" class="headerlink" title="Excaildraw"></a>Excaildraw</h3><p>画图工具，个人感觉比白板好用，并且网上有很多素材可以使用。也是通过命令即可新建图。</p>
+<img src="/2024/02/21/Obsidian%E5%BC%80%E7%AE%B1%E5%8D%B3%E7%94%A8%E5%BA%93/Pasted_image_20240221153756.png" class="">
+
+<h2 id="附件"><a href="#附件" class="headerlink" title="附件"></a>附件</h2><ol>
+<li>之前提到大佬整理的开箱即用库<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1nr4y1B76U/">地址</a></li>
+<li>个人整理的开箱即用库<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/17fPJ-haQGBjzkoNLvgGbZw?pwd=wd6k">链接</a>  提取码: wd6k</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Utils/" rel="tag"># Utils</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/02/08/%E8%AE%A4%E7%9F%A5%E8%A7%89%E9%86%92/" rel="prev" title="认知觉醒">
+      <i class="fa fa-chevron-left"></i> 认知觉醒
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTExMi8xNTYzOQ=="></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%86%E5%A4%87"><span class="nav-number">2.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E5%B7%A5%E4%BD%9C%E5%8C%BA"><span class="nav-number">3.</span> <span class="nav-text">建立工作区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%E7%AC%94%E8%AE%B0"><span class="nav-number">4.</span> <span class="nav-text">新建笔记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%92%E4%BB%B6%E7%94%9F%E6%80%81"><span class="nav-number">5.</span> <span class="nav-text">插件生态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%94%E8%AE%B0%E6%A0%B8%E5%BF%83"><span class="nav-number">6.</span> <span class="nav-text">笔记核心</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A5%E8%AE%B0"><span class="nav-number">6.1.</span> <span class="nav-text">日记</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8A%E6%97%A5%E4%B8%BB%E9%A2%98"><span class="nav-number">6.2.</span> <span class="nav-text">今日主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%84%9F%E6%81%A9%E4%B8%89%E4%BB%B6%E4%BA%8B"><span class="nav-number">6.3.</span> <span class="nav-text">感恩三件事</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%BB%E5%8A%A1%E6%B8%85%E5%8D%95"><span class="nav-number">6.4.</span> <span class="nav-text">任务清单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%8F%E7%AC%94%E6%84%9F%E6%82%9F"><span class="nav-number">6.5.</span> <span class="nav-text">随笔感悟</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0"><span class="nav-number">6.6.</span> <span class="nav-text">读书笔记</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E7%AB%A0%E5%89%AA%E8%97%8F"><span class="nav-number">7.</span> <span class="nav-text">文章剪藏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-number">8.</span> <span class="nav-text">其他</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ChatGPT"><span class="nav-number">8.1.</span> <span class="nav-text">ChatGPT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Periodic-Notes"><span class="nav-number">8.2.</span> <span class="nav-text">Periodic Notes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spaced-Repetition"><span class="nav-number">8.3.</span> <span class="nav-text">Spaced Repetition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Excaildraw"><span class="nav-number">8.4.</span> <span class="nav-text">Excaildraw</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%84%E4%BB%B6"><span class="nav-number">9.</span> <span class="nav-text">附件</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Roy"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Roy</p>
+  <div class="site-description" itemprop="description">即使细微如蝴蝶鼓舞，也能煽动千里之飓风。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Roy</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>
