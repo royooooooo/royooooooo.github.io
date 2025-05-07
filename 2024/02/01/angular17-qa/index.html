@@ -2,9 +2,9 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 7.1.1">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.1.1">
+
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -13,98 +13,86 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
-  </script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-  <meta name="description" content="Angular Component, Core Directives and PipesAngular 17 新增了哪些新的方法新增了 @for @empty | @if @else |  @switch @case @default @for @empty 和 *ngFor 的区别更加简单，默认支持 $index, $count, $first, $last, $odd, $even，必须要给">
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Angular Component, Core Directives and PipesAngular Component, Core Directives and PipesAngular 17 新增了哪些新的方法?新增了 @for @empty | @if @else |  @switch @case @default @for @empty 和 *ngFor 的区别?更加简单，默认支持 $i">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Angular 17 - QA">
 <meta property="og:url" content="http://example.com/2024/02/01/angular17-qa/index.html">
 <meta property="og:site_name" content="蝴蝶效应">
-<meta property="og:description" content="Angular Component, Core Directives and PipesAngular 17 新增了哪些新的方法新增了 @for @empty | @if @else |  @switch @case @default @for @empty 和 *ngFor 的区别更加简单，默认支持 $index, $count, $first, $last, $odd, $even，必须要给">
+<meta property="og:description" content="Angular Component, Core Directives and PipesAngular Component, Core Directives and PipesAngular 17 新增了哪些新的方法?新增了 @for @empty | @if @else |  @switch @case @default @for @empty 和 *ngFor 的区别?更加简单，默认支持 $i">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-02-01T09:00:00.000Z">
-<meta property="article:modified_time" content="2024-02-01T09:02:18.790Z">
+<meta property="article:modified_time" content="2025-04-27T13:34:28.564Z">
 <meta property="article:author" content="Roy">
 <meta property="article:tag" content="angular">
 <meta name="twitter:card" content="summary">
 
+
 <link rel="canonical" href="http://example.com/2024/02/01/angular17-qa/">
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-CN'
-  };
-</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2024/02/01/angular17-qa/","path":"2024/02/01/angular17-qa/","title":"Angular 17 - QA"}</script>
 
-  <title>Angular 17 - QA | 蝴蝶效应</title>
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Angular 17 - QA | 蝴蝶效应</title>
   
 
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
 
 
 
 
 
   <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+    <div class="toggle" aria-label="切换导航栏" role="button">
     </div>
   </div>
 
   <div class="site-meta">
 
     <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">蝴蝶效应</h1>
-      <span class="logo-line-after"><i></i></span>
+      <i class="logo-line"></i>
+      <p class="site-title">蝴蝶效应</p>
+      <i class="logo-line"></i>
     </a>
   </div>
 
   <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-        <i class="fa fa-search fa-fw fa-lg"></i>
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
     </div>
   </div>
 </div>
@@ -112,208 +100,16 @@
 
 
 
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
-
-  </li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
-        </a>
-      </li>
-  </ul>
-</nav>
 
 
 
-  <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-  </div>
-</div>
-
-    </div>
-  </div>
-
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content post posts-expand">
-            
-
-    
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/02/01/angular17-qa/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Roy">
-      <meta itemprop="description" content="即使细微如蝴蝶鼓舞，也能煽动千里之飓风。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="蝴蝶效应">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          Angular 17 - QA
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2024-02-01 17:00:00 / 修改时间：17:02:18" itemprop="dateCreated datePublished" datetime="2024-02-01T17:00:00+08:00">2024-02-01</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-        <h1 id="Angular-Component-Core-Directives-and-Pipes"><a href="#Angular-Component-Core-Directives-and-Pipes" class="headerlink" title="Angular Component, Core Directives and Pipes"></a>Angular Component, Core Directives and Pipes</h1><h3 id="Angular-17-新增了哪些新的方法"><a href="#Angular-17-新增了哪些新的方法" class="headerlink" title="Angular 17 新增了哪些新的方法"></a>Angular 17 新增了哪些新的方法</h3><p>新增了 @for @empty | @if @else |  @switch @case @default</p>
-<h3 id="for-empty-和-ngFor-的区别"><a href="#for-empty-和-ngFor-的区别" class="headerlink" title="@for @empty 和 *ngFor 的区别"></a>@for @empty 和 *ngFor 的区别</h3><p>更加简单，默认支持 $index, $count, $first, $last, $odd, $even，必须要给 track，可以是方法</p>
-<h3 id="if-else-和-ngIf-的区别"><a href="#if-else-和-ngIf-的区别" class="headerlink" title="@if @else  和 *ngIf 的区别"></a>@if @else  和 *ngIf 的区别</h3><p>写法更方便</p>
-<h3 id="ngContainer-的作用是什么"><a href="#ngContainer-的作用是什么" class="headerlink" title="*ngContainer 的作用是什么"></a>*ngContainer 的作用是什么</h3><p>作为一个占位符，和 <code>React</code>的 <code>&lt;&gt;&lt;/&gt;</code>类似，通常可以结合其他指令一起使用。不会放到 dom 结构中</p>
-<h3 id="ngTemplate-是什么"><a href="#ngTemplate-是什么" class="headerlink" title="ngTemplate 是什么"></a>ngTemplate 是什么</h3><p>可以定义一个模板元素</p>
-<h3 id="build-in-pipe-有哪些"><a href="#build-in-pipe-有哪些" class="headerlink" title="build-in pipe 有哪些"></a>build-in pipe 有哪些</h3><p><code>date: &#39;MMM/dd/YYYY&#39;, currency: &#39;CNY&#39;, number:&#39;3.3-5&#39;, slice:0:2, json, keyvalue</code></p>
-<span id="more"></span>
-<h2 id="Angular-Local-Template-Querying-In-Depth"><a href="#Angular-Local-Template-Querying-In-Depth" class="headerlink" title="Angular Local Template Querying In Depth"></a>Angular Local Template Querying In Depth</h2><h3 id="Angular-在组件中如何查找子组件"><a href="#Angular-在组件中如何查找子组件" class="headerlink" title="Angular 在组件中如何查找子组件"></a>Angular 在组件中如何查找子组件</h3><p>可以使用装饰器 <code>@ViewChild(ComponentClass or \referId)</code>，通过class匹配时，多个class也只返回第一个。装饰器可以拿到对应组件下面的所有成员变量。<br>如果使用 <code>ElementRef</code>加上<code>refId</code>，可以拿到对应的 <code>native dom</code>。也可以使用 <code>@ViewChildren</code>找到多个子项</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ViewChild</span>(<span class="string">&#x27;card&#x27;</span>|<span class="title class_">CardComponent</span>)</span><br><span class="line"><span class="attr">card</span>: <span class="title class_">CardComponent</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@ViewChildren</span>(<span class="title class_">CardComponent</span>)</span><br><span class="line"><span class="attr">card</span>: <span class="title class_">QueryList</span>[<span class="title class_">CardComponent</span>]</span><br><span class="line"></span><br><span class="line"><span class="meta">@ViewChildren</span>(<span class="title class_">CardComponent</span>: &#123;<span class="attr">read</span>: <span class="title class_">ElementRef</span>&#125;)</span><br><span class="line"><span class="attr">card</span>: <span class="title class_">QueryList</span>[<span class="title class_">ElementRef</span>]</span><br></pre></td></tr></table></figure>
-<h3 id="什么时候可以操作对应的-dom-或者-component"><a href="#什么时候可以操作对应的-dom-或者-component" class="headerlink" title="什么时候可以操作对应的 dom 或者 component"></a>什么时候可以操作对应的 dom 或者 component</h3><p>可以在 Angular 提供的 <code>ngAfterViewInit</code>方法中操作，这个方法会在视图加载完成后调用。但是不要在这个方法中修改视图相关的数据，这样会导致渲染的时候出现错误</p>
-
-    </div>
-
-    
-    
-    
-
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/angular/" rel="tag"># angular</a>
-          </div>
-
+</header>
         
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2021/04/22/react_fiber/" rel="prev" title="图解 React Fiber 机制">
-      <i class="fa fa-chevron-left"></i> 图解 React Fiber 机制
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2024/02/08/%E8%AE%A4%E7%9F%A5%E8%A7%89%E9%86%92/" rel="next" title="认知觉醒">
-      认知觉醒 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
   
-  
-  
-
-
-
-          </div>
-          
-    
-  <div class="comments">
-    <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTExMi8xNTYzOQ=="></div>
-  </div>
-  
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
   <aside class="sidebar">
-    <div class="sidebar-inner">
 
-      <ul class="sidebar-nav motion-element">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
         </li>
@@ -322,141 +118,265 @@
         </li>
       </ul>
 
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Angular-Component-Core-Directives-and-Pipes"><span class="nav-number">1.</span> <span class="nav-text">Angular Component, Core Directives and Pipes</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Angular-17-%E6%96%B0%E5%A2%9E%E4%BA%86%E5%93%AA%E4%BA%9B%E6%96%B0%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">1.0.1.</span> <span class="nav-text">Angular 17 新增了哪些新的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#for-empty-%E5%92%8C-ngFor-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.0.2.</span> <span class="nav-text">@for @empty 和 *ngFor 的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#if-else-%E5%92%8C-ngIf-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.0.3.</span> <span class="nav-text">@if @else  和 *ngIf 的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ngContainer-%E7%9A%84%E4%BD%9C%E7%94%A8%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">1.0.4.</span> <span class="nav-text">*ngContainer 的作用是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ngTemplate-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">1.0.5.</span> <span class="nav-text">ngTemplate 是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#build-in-pipe-%E6%9C%89%E5%93%AA%E4%BA%9B"><span class="nav-number">1.0.6.</span> <span class="nav-text">build-in pipe 有哪些</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Angular-Local-Template-Querying-In-Depth"><span class="nav-number">1.1.</span> <span class="nav-text">Angular Local Template Querying In Depth</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Angular-%E5%9C%A8%E7%BB%84%E4%BB%B6%E4%B8%AD%E5%A6%82%E4%BD%95%E6%9F%A5%E6%89%BE%E5%AD%90%E7%BB%84%E4%BB%B6"><span class="nav-number">1.1.1.</span> <span class="nav-text">Angular 在组件中如何查找子组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E5%8F%AF%E4%BB%A5%E6%93%8D%E4%BD%9C%E5%AF%B9%E5%BA%94%E7%9A%84-dom-%E6%88%96%E8%80%85-component"><span class="nav-number">1.1.2.</span> <span class="nav-text">什么时候可以操作对应的 dom 或者 component</span></a></li></ol></li></ol></li></ol></div>
-      </div>
-      <!--/noindex-->
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Angular-Component-Core-Directives-and-Pipes"><span class="nav-number">1.</span> <span class="nav-text">Angular Component, Core Directives and Pipes</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Angular-Component-Core-Directives-and-Pipes-1"><span class="nav-number">1.1.</span> <span class="nav-text">Angular Component, Core Directives and Pipes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Angular-Local-Template-Querying-In-Depth"><span class="nav-number">1.2.</span> <span class="nav-text">Angular Local Template Querying In Depth</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Angular-Content-Projection-In-Depth"><span class="nav-number">1.3.</span> <span class="nav-text">Angular Content Projection In Depth</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Angular-Directives-In-Depth"><span class="nav-number">1.4.</span> <span class="nav-text">Angular Directives In Depth</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Angular-View-Encapsulation-In-Depth"><span class="nav-number">1.5.</span> <span class="nav-text">Angular View Encapsulation In Depth</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Angular-Injectable-Service-In-Depth"><span class="nav-number">1.6.</span> <span class="nav-text">Angular Injectable Service In Depth</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Angular-Dependency-Injection-In-Depth"><span class="nav-number">1.7.</span> <span class="nav-text">Angular Dependency Injection In Depth</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Angular-Change-Detection"><span class="nav-number">1.8.</span> <span class="nav-text">Angular Change Detection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Angular-lifecycle-hook"><span class="nav-number">1.9.</span> <span class="nav-text">Angular lifecycle hook</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Angular-Partial-Template-Loading"><span class="nav-number">1.10.</span> <span class="nav-text">Angular Partial Template Loading</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
 
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="Roy"
       src="/images/avatar.jpg">
   <p class="site-author-name" itemprop="name">Roy</p>
   <div class="site-description" itemprop="description">即使细微如蝴蝶鼓舞，也能煽动千里之飓风。</div>
 </div>
-<div class="site-state-wrap motion-element">
+<div class="site-state-wrap animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">42</span>
+        <a href="/archives/">
+          <span class="site-state-item-count">43</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-            <a href="/categories/">
+          <a href="/categories/">
         <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-        <span class="site-state-item-count">36</span>
+          <a href="/tags/">
+        <span class="site-state-item-count">37</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
 
-
-
+        </div>
       </div>
+    </div>
+
+    
+  </aside>
+
 
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
+
+    <div class="main-inner post posts-expand">
 
 
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
   
-  &copy; 
-  <span itemprop="copyrightYear">2024</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Roy</span>
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/02/01/angular17-qa/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Roy">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蝴蝶效应">
+      <meta itemprop="description" content="即使细微如蝴蝶鼓舞，也能煽动千里之飓风。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Angular 17 - QA | 蝴蝶效应">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Angular 17 - QA
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-02-01 17:00:00" itemprop="dateCreated datePublished" datetime="2024-02-01T17:00:00+08:00">2024-02-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-27 21:34:28" itemprop="dateModified" datetime="2025-04-27T21:34:28+08:00">2025-04-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
+        </span>
+    </span>
+
+  
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
-  </div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="Angular-Component-Core-Directives-and-Pipes"><a href="#Angular-Component-Core-Directives-and-Pipes" class="headerlink" title="Angular Component, Core Directives and Pipes"></a>Angular Component, Core Directives and Pipes</h1><h2 id="Angular-Component-Core-Directives-and-Pipes-1"><a href="#Angular-Component-Core-Directives-and-Pipes-1" class="headerlink" title="Angular Component, Core Directives and Pipes"></a>Angular Component, Core Directives and Pipes</h2><p><strong>Angular 17 新增了哪些新的方法</strong><br>?<br>新增了 @for @empty | @if @else |  @switch @case @default</p>
+<p><strong>@for @empty 和 *ngFor 的区别</strong><br>?<br>更加简单，默认支持 $index, $count, $first, $last, $odd, $even，必须要给 track，可以是方法</p>
+<p><strong>@if @else  和 *ngIf 的区别</strong><br>?<br>写法更方便</p>
+<p><strong>*ngContainer 的作用是什么</strong><br>?<br>作为一个占位符，和 <code>React</code>的 <code>&lt;&gt;&lt;/&gt;</code>类似，通常可以结合其他指令一起使用。不会放到 dom 结构中</p>
+<span id="more"></span>
+<p> <strong>ngTemplate 是什么</strong><br>?<br>可以定义一个模板元素，可以配合其他语法使用，例如<code>@for</code> <code>@if</code>等。可以用于模板片段，通过<code>ngTemplateOutlet</code>在其他组件中复用</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// define</span><br><span class="line"><span class="tag">&lt;<span class="name">ng-template</span> #<span class="attr">defaultImg</span> <span class="attr">let-url</span>=<span class="string">&quot;description&quot;</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;url&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span>  </span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">ngSrc</span>=<span class="string">&quot;/assets/empty-image.png&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;&quot;</span> <span class="attr">height</span>=<span class="string">&quot;225&quot;</span> <span class="attr">width</span>=<span class="string">&quot;398&quot;</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">ng-template</span>&gt;</span></span><br><span class="line">// use</span><br><span class="line"><span class="tag">&lt;<span class="name">ng-container</span> *<span class="attr">ngTemplateOutlet</span>=<span class="string">&quot;templateRef; context: &#123;description: course.description&#125;&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p> <strong>build-in pipe 有哪些</strong><br>?<br><code>date: &#39;MMM/dd/YYYY&#39;, currency: &#39;CNY&#39;, number:&#39;3.3-5&#39;, slice:0:2, json, keyvalue</code></p>
+<h2 id="Angular-Local-Template-Querying-In-Depth"><a href="#Angular-Local-Template-Querying-In-Depth" class="headerlink" title="Angular Local Template Querying In Depth"></a>Angular Local Template Querying In Depth</h2><p> <strong>Angular 在组件中如何查找子组件</strong><br>?<br>可以使用装饰器 <code>@ViewChild(ComponentClass or \referId)</code>，通过class匹配时，多个class也只返回第一个。装饰器可以拿到对应组件下面的所有成员变量。<br>如果使用 <code>ElementRef</code>加上<code>refId</code>，可以拿到对应的 <code>native dom</code>。也可以使用 <code>@ViewChildren</code>找到多个子项</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ViewChild</span>(<span class="string">&#x27;card&#x27;</span>|<span class="title class_">CardComponent</span>)</span><br><span class="line"><span class="attr">card</span>: <span class="title class_">CardComponent</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@ViewChildren</span>(<span class="title class_">CardComponent</span>)</span><br><span class="line"><span class="attr">card</span>: <span class="title class_">QueryList</span>[<span class="title class_">CardComponent</span>]</span><br><span class="line"></span><br><span class="line"><span class="meta">@ViewChildren</span>(<span class="title class_">CardComponent</span>: &#123;<span class="attr">read</span>: <span class="title class_">ElementRef</span>&#125;)</span><br><span class="line"><span class="attr">card</span>: <span class="title class_">QueryList</span>[<span class="title class_">ElementRef</span>]</span><br></pre></td></tr></table></figure>
+
+<p> <strong>什么时候可以操作对应的 dom 或者 component</strong><br>?<br>可以在 Angular 提供的 <code>ngAfterViewInit</code>方法中操作，这个方法会在视图加载完成后调用。但是不要在这个方法中修改视图相关的数据，这样会导致渲染的时候出现错误</p>
+<p>  <strong>ngContent 如何使用</strong><br>?<br><code>ngContent</code> 可以作为一个占位符，类似于 React 中使用 <code>&#123;this.children()&#125;</code>。作用是将当前组件作为一个高阶组件，接收外部传入的子组件并正确的放置在对应的地方。其中 <code>select</code> 属性可以选择元素或者 <code>class</code>。一个页面可以允许多个 <code>&lt;ngContent/&gt;</code></p>
+<h2 id="Angular-Content-Projection-In-Depth"><a href="#Angular-Content-Projection-In-Depth" class="headerlink" title="Angular Content Projection In Depth"></a>Angular Content Projection In Depth</h2><p><strong>@ViewChild注解和@ContentChild注解的区别</strong><br>?<br>当视图中使用了<code>ng-content</code>标签，那么从父组件传入的部分无法被 <code>@ViewChild</code>捕获，因此只能使用<code>@ContentChild</code>来查询该组件。而<code>@ContentChild</code>语法只能用于查询传入的部分视图，无法获取当前 View 中的其他组件。</p>
+<p><strong>@ViewChild，@ViewChildren， @ContentChild，@ContentChildren区别</strong><br>?<br><code>children</code>表明是查询多个组件</p>
+<h2 id="Angular-Directives-In-Depth"><a href="#Angular-Directives-In-Depth" class="headerlink" title="Angular Directives In Depth"></a>Angular Directives In Depth</h2><p><strong>Angular Directive 是什么，怎么用?</strong><br>?</p>
+<ol>
+<li>增强现有组件功能，可以在该中为现有组件添加或修改属性或者事件</li>
+<li>可以接受输入元素和方法 <code>@Input</code>和<code>@Output</code></li>
+<li>可以自定义<code>Directive</code>实现类似<code>ngIf</code>的操作，通过<code>templateRef</code>和<code>ViewContainer</code>来操作视图的添加和删除</li>
+<li>将指令通过<code>exportAs</code>导出后，通过<code>#RefId=&#39;direID&#39;</code>的方式可以将它引入文件中，其他地方就可以调用其内部方法</li>
+<li>通过步骤3导出后，可以通过<code>@ViewChild</code>查询到该指令<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;course-image [src]=<span class="string">&quot;course.iconUrl&quot;</span> *ngxUnless=<span class="string">&quot;!course.iconUrl&quot;</span>/&gt;</span><br><span class="line"><span class="meta">@Directive</span>(&#123;  </span><br><span class="line">  <span class="attr">selector</span>: <span class="string">&#x27;[ngxUnless]&#x27;</span>,  </span><br><span class="line">  <span class="attr">standalone</span>: <span class="literal">true</span>  </span><br><span class="line">&#125;)  </span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">NgxUnlessDirective</span> &#123;  </span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"><span class="keyword">private</span> templateRef: TemplateRef&lt;<span class="built_in">any</span>&gt;, <span class="keyword">private</span> container: ViewContainerRef</span>) &#123;  </span><br><span class="line">  &#125;  </span><br><span class="line">  <span class="keyword">private</span> <span class="attr">visible</span>: <span class="built_in">boolean</span> = <span class="literal">false</span>;  </span><br><span class="line">  </span><br><span class="line">  <span class="meta">@Input</span>()  </span><br><span class="line">  <span class="keyword">set</span> <span class="title function_">ngxUnless</span>(<span class="params">condition: <span class="built_in">boolean</span></span>) &#123;  </span><br><span class="line">    <span class="keyword">if</span> (!condition &amp;&amp; !<span class="variable language_">this</span>.<span class="property">visible</span>) &#123;  </span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">container</span>.<span class="title function_">createEmbeddedView</span>(<span class="variable language_">this</span>.<span class="property">templateRef</span>);  </span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">visible</span> = <span class="literal">true</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">if</span> (condition &amp;&amp; <span class="variable language_">this</span>.<span class="property">visible</span>) &#123;  </span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">container</span>.<span class="title function_">clear</span>();  </span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">visible</span> = <span class="literal">false</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">  &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="Angular-View-Encapsulation-In-Depth"><a href="#Angular-View-Encapsulation-In-Depth" class="headerlink" title="Angular View Encapsulation In Depth"></a>Angular View Encapsulation In Depth</h2><p><strong>Angular是怎么保持各个组件之间的 css style 独立的？</strong><br>?</p>
+<ol>
+<li>基于组件分为不同的 css 文件，实现不同组件样式文件之间的独立</li>
+<li>默认使用 <code>Emulated</code> 模式，会生成唯一的 <code>className</code> 来区分</li>
+<li>支持使用 CSS 模块化</li>
+</ol>
+<p><strong>Angular提供了哪些 View Encapsulation？</strong><br>?</p>
+<ol>
+<li><code>Emulated</code>，默认，<code>Angular</code>会自动生成唯一标志来使 <code>CSS</code>互不影响</li>
+<li><code>Native</code>，使用浏览器自带的<code>Shadow DOM</code>的API来实现样式隔离，但是浏览器支持有限</li>
+<li><code>None</code>，不使用 <code>Encapsulation</code>，会导致组件之间样式污染</li>
+</ol>
+<p><strong>有哪些 build-in 的样式选择器？</strong><br>?</p>
+<ol>
+<li><code>:host</code>用于选中当前组件</li>
+<li><code>ng-deep</code> 会让<code>class</code>变成全局属性，影响到其他组件，通常会在前面添加 <code>:host</code>将其限制在该组件和其子组件中</li>
+<li><code>:host-context(.css)</code> 会限制 css 应用范围在当前宿主组件中</li>
+</ol>
+<h2 id="Angular-Injectable-Service-In-Depth"><a href="#Angular-Injectable-Service-In-Depth" class="headerlink" title="Angular Injectable Service In Depth"></a>Angular Injectable Service In Depth</h2><p><strong>Angular 中如何实现 Http 请求</strong><br>?<br>Angular 中自带了 <code>httpClient</code>+ <code>RxJS</code> 用于网络请求，并且<code>build-in</code>指令<code>asyc</code>可以将<code>Observable</code>对象转为实际元素，如下：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">AppComponent</span> <span class="keyword">implements</span> <span class="title class_">OnInit</span> &#123;  </span><br><span class="line">  <span class="attr">courses$</span>: <span class="title class_">Observable</span>&lt;<span class="title class_">Course</span>[]&gt;;  </span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"><span class="keyword">private</span> client: HttpClient</span>) &#123;  </span><br><span class="line">  &#125;  </span><br><span class="line">  </span><br><span class="line">  <span class="title function_">ngOnInit</span>(<span class="params"></span>) &#123;  </span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">courses$</span> = <span class="variable language_">this</span>.<span class="property">client</span>.<span class="property">get</span>&lt;<span class="title class_">Course</span>[]&gt;(<span class="string">&#x27;/api/courses&#x27;</span>);  </span><br><span class="line">  &#125;  </span><br><span class="line">&#125;</span><br><span class="line">%% <span class="variable constant_">HTML</span> %%</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">course-card</span> *<span class="attr">ngFor</span>=<span class="string">&quot;let course of (courses$ | async)&quot;</span>/&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Angular 的 Service 适合什么场景？</strong><br>?</p>
+<ol>
+<li>数据共享，例如 Redux，可以通过 <code>public</code>来共享变量，也可以通过<code>Observerble</code>来观察数据变化</li>
+<li>业务逻辑</li>
+<li>API交互</li>
+<li>状态管理，帮助和跟踪应用程序的状态变化</li>
+</ol>
+<h2 id="Angular-Dependency-Injection-In-Depth"><a href="#Angular-Dependency-Injection-In-Depth" class="headerlink" title="Angular Dependency Injection In Depth"></a>Angular Dependency Injection In Depth</h2><p><strong>Angular 中 DI 有什么好处？</strong><br>?</p>
+<ol>
+<li>方便 Mock 对应的依赖，特别是在测试环境下，例如：模拟网络请求</li>
+<li>单例模式，使用工厂模式，可以自定义工厂</li>
+</ol>
+<p><strong>Angular 中怎么使用自定义工厂？</strong><br>?</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Complex</span></span><br><span class="line"><span class="meta">@Component</span>(&#123;  </span><br><span class="line">  <span class="attr">selector</span>: <span class="string">&#x27;app-root&#x27;</span>,  </span><br><span class="line">  <span class="attr">templateUrl</span>: <span class="string">&#x27;./app.component.html&#x27;</span>,  </span><br><span class="line">  <span class="attr">styleUrls</span>: [<span class="string">&#x27;./app.component.css&#x27;</span>],  </span><br><span class="line">  <span class="attr">providers</span>: [  </span><br><span class="line">    &#123;<span class="attr">provide</span>: <span class="variable constant_">COURSE_SERVICE</span>, <span class="attr">useFactory</span>: courseServiceProvider, <span class="attr">deps</span>: [<span class="title class_">HttpClient</span>]&#125;  </span><br><span class="line">  ]  </span><br><span class="line">&#125;)  </span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">AppComponent</span> <span class="keyword">implements</span> <span class="title class_">OnInit</span> &#123;  </span><br><span class="line">  </span><br><span class="line">  <span class="attr">courses$</span>: <span class="title class_">Observable</span>&lt;<span class="title class_">Course</span>[]&gt;;  </span><br><span class="line">  </span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"><span class="meta">@Inject</span>(COURSE_SERVICE) <span class="keyword">private</span> service: CourseService</span>) &#123;  </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Simple</span></span><br><span class="line"><span class="meta">@Component</span>(&#123;  </span><br><span class="line">  <span class="attr">selector</span>: <span class="string">&#x27;app-root&#x27;</span>,  </span><br><span class="line">  <span class="attr">templateUrl</span>: <span class="string">&#x27;./app.component.html&#x27;</span>,  </span><br><span class="line">  <span class="attr">styleUrls</span>: [<span class="string">&#x27;./app.component.css&#x27;</span>],  </span><br><span class="line">  <span class="attr">providers</span>: [<span class="title class_">CourseService</span>]</span><br><span class="line">&#125;)  </span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">AppComponent</span> <span class="keyword">implements</span> <span class="title class_">OnInit</span> &#123;  </span><br><span class="line">  </span><br><span class="line">  <span class="attr">courses$</span>: <span class="title class_">Observable</span>&lt;<span class="title class_">Course</span>[]&gt;;  </span><br><span class="line">  </span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"><span class="keyword">private</span> service: CourseService</span>) &#123;  </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Factory</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">courseServiceProvider</span>(<span class="params">client: HttpClient</span>) &#123;  </span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;create new service&#x27;</span>);  </span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">CourseService</span>(client)  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="variable constant_">COURSE_SERVICE</span> = <span class="keyword">new</span> <span class="title class_">InjectionToken</span>(<span class="string">&#x27;COURSE_SERVICE&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+
+<p><strong>Angular DI 的 Provider 作用？</strong><br>?<br>如果当前组件需要自定义 <code>Provider</code>，那么生成的这个<code>service</code>的生命周期将会和组件绑定。如果不想影响全局其他的该<code>service</code>，则可以使用自定义<code>Provider</code>的方式。</p>
+<p><strong>Angular DI 的 shakeable provider 怎么实现？</strong><br>?<br>如果直接使用 <code>new InjectionToken(TOKEN)</code> 的方式生成的元素会默认打包到最后的 js 文件中，通过传入第二个参数，指定 <code>factory</code>，这样只有使用了才会打包对应的配置文件</p>
+<p><strong>Angular DI 中的 @Host, @Self, @Skipself, Optional 有什么作用</strong><br>?</p>
+<ol>
+<li>当 Director 需要所绑定的组件提供依赖的时候，可以通过<code>host</code>来指定</li>
+<li>当组件需要自身提供依赖实例的时候，可以使用 <code>Self</code></li>
+<li>当组件需要父级组件提供依赖实例的时候，可以使用 <code>SkipSelf</code></li>
+<li>当不确定是否有父级组件提供依赖实例的时候，可以使用 <code>Optional</code></li>
+</ol>
+<h2 id="Angular-Change-Detection"><a href="#Angular-Change-Detection" class="headerlink" title="Angular Change Detection"></a>Angular Change Detection</h2><p><strong>Angular 的 change detection 是怎样的</strong><br>?<br>Angular 有两种 change detection，一种是 <code>Default</code>，也被称为 <code>CheckAlways</code>，即任何可能导致视图发生变化的行为(输入、点击、事件等)触发时，会检查当前组件以及子组件是否发生变化，因此可能会导致出现部分性能损耗。<br>另一个方式是 <code>OnPush</code>，当组件的输入属性，即<code>@Input</code>发生变化时；当组件事件发生时；当手动调用<code>ChangeDetectorRef.markForCheck()</code>时，才会对比视图是否发生变化，但是需要注意的是对比<code>@Input</code>时是浅对比，不是深对比。使用 <code>OnPush</code> 需要注意，如果有 <code>Observerble</code> 属性的对象，那么需要通过在 template 中添加 <code>async</code>的方式来渲染，如果只在 <code>.ts</code>文件中通过订阅赋值的方式，则页面不会变化。</p>
+<p><strong>Angular 中还有什么方法可以避免更新检测</strong><br>?<br>如果某个属性传入后不会发生变化，那么可以使用 <code>attribute decorator</code>来指定，可以避免后续变化的更新检测。也可以手动通过调用 <code>ChangeDetectorRef.markForCheck()</code> 来触发检测。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> constructor(</span><br><span class="line">    @Attribute(&quot;type&quot;) type: string</span><br><span class="line">  ) &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">course-card</span> *<span class="attr">ngFor</span>=<span class="string">&quot;let course of (courses$ | async)&quot;</span></span></span><br><span class="line"><span class="tag">                 [<span class="attr">course</span>]=<span class="string">&quot;course&quot;</span> (<span class="attr">courseChanged</span>)=<span class="string">&quot;save($event)&quot;</span> <span class="attr">type</span>=<span class="string">&quot;&#x27;beginner&#x27;&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Angular-lifecycle-hook"><a href="#Angular-lifecycle-hook" class="headerlink" title="Angular lifecycle hook"></a>Angular lifecycle hook</h2><p><strong>Angular 生命周期的执行顺序是什么</strong><br>?<br>1.	constructor: 注入依赖，进行实例化<br>2.	ngOnChanges: 当被绑定的输入属性（@Input）发生变化时调用，首次绑定时也会调用。<br>3.	ngOnInit: 在组件初始化完成后立即调用，用于初始化数据和执行逻辑。<br>4.	ngDoCheck: 在每个变更检测周期中调用，用于自定义的变更检测逻辑。<br>5.	ngAfterContentInit: 在组件内容投影完成后调用。<br>6.	ngAfterContentChecked: 在每个内容投影完成后调用。<br>7.	ngAfterViewInit: 在组件的视图初始化完成后调用。<br>8.	ngAfterViewChecked: 在每个视图检测周期后调用。<br>9.	ngOnDestroy: 在组件被销毁前调用，用于清理资源和取消订阅。</p>
+<h2 id="Angular-Partial-Template-Loading"><a href="#Angular-Partial-Template-Loading" class="headerlink" title="Angular Partial Template Loading"></a>Angular Partial Template Loading</h2><p><strong>如何让 Angular 延迟加载</strong><br>?<br><code>@defer</code> 装饰器会让对应的组件延迟加载，配合 <code>@placeholder(minimum 3s)</code> 可以实现延时加载的效果</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/angular/" rel="tag"># angular</a>
+          </div>
 
         
 
-
-
-
-
-
-
-
-      </div>
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/04/22/react_fiber/" rel="prev" title="图解 React Fiber 机制">
+                  <i class="fa fa-angle-left"></i> 图解 React Fiber 机制
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/02/08/%E8%AE%A4%E7%9F%A5%E8%A7%89%E9%86%92/" rel="next" title="认知觉醒">
+                  认知觉醒 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
     </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Roy</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
 
-  
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
+    </div>
+  </footer>
 
   
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
 
-
-
-
-  
-<script src="/js/local-search.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-<script>
-NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
-  window.livereOptions = {
-    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
-  };
-  (function(d, s) {
-    var j, e = d.getElementsByTagName(s)[0];
-    if (typeof LivereTower === 'function') { return; }
-    j = d.createElement(s);
-    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-    j.async = true;
-    e.parentNode.insertBefore(j, e);
-  })(document, 'script');
-});
-</script>
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
 </body>
 </html>

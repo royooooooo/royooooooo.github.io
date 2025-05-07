@@ -2,9 +2,9 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 7.1.1">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.1.1">
+
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -13,14 +13,13 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
-  </script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-  <meta name="description" content="即使细微如蝴蝶鼓舞，也能煽动千里之飓风。">
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.23.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="即使细微如蝴蝶鼓舞，也能煽动千里之飓风。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="蝴蝶效应">
 <meta property="og:url" content="http://example.com/index.html">
@@ -30,78 +29,67 @@
 <meta property="article:author" content="Roy">
 <meta name="twitter:card" content="summary">
 
+
 <link rel="canonical" href="http://example.com/">
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : true,
-    isPost : false,
-    lang   : 'zh-CN'
-  };
-</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"index.html","title":""}</script>
 
-  <title>蝴蝶效应</title>
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>蝴蝶效应</title>
   
 
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
 
 
 
 
 
   <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+    <div class="toggle" aria-label="切换导航栏" role="button">
     </div>
   </div>
 
   <div class="site-meta">
 
     <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
+      <i class="logo-line"></i>
       <h1 class="site-title">蝴蝶效应</h1>
-      <span class="logo-line-after"><i></i></span>
+      <i class="logo-line"></i>
     </a>
   </div>
 
   <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-        <i class="fa fa-search fa-fw fa-lg"></i>
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
     </div>
   </div>
 </div>
@@ -109,101 +97,113 @@
 
 
 
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
-  </li>
-        <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+</header>
+        
+  
+  <aside class="sidebar">
 
-  </li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Roy"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Roy</p>
+  <div class="site-description" itemprop="description">即使细微如蝴蝶鼓舞，也能煽动千里之飓风。</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-name">日志</span>
         </a>
-      </li>
-  </ul>
-</nav>
-
-
-
-  <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-  </div>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
 </div>
 
+        </div>
+      </div>
     </div>
-  </div>
-
-</div>
-    </header>
 
     
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
+  </aside>
 
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
+    </div>
 
-          <div class="content index posts-expand">
-            
-      
+    <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/02/21/Obsidian%E5%BC%80%E7%AE%B1%E5%8D%B3%E7%94%A8%E5%BA%93/">
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/05/07/%E6%B5%85%E8%B0%88GenAI/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="Roy">
-      <meta itemprop="description" content="即使细微如蝴蝶鼓舞，也能煽动千里之飓风。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="蝴蝶效应">
+      <meta itemprop="description" content="即使细微如蝴蝶鼓舞，也能煽动千里之飓风。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 蝴蝶效应">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/02/21/Obsidian%E5%BC%80%E7%AE%B1%E5%8D%B3%E7%94%A8%E5%BA%93/" class="post-title-link" itemprop="url">Obsidian开箱即用库</a>
+          <a href="/2025/05/07/%E6%B5%85%E8%B0%88GenAI/" class="post-title-link" itemprop="url">浅谈GenAI</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
 
-              <time title="创建时间：2024-02-21 15:45:25 / 修改时间：16:04:28" itemprop="dateCreated datePublished" datetime="2024-02-21T15:45:25+08:00">2024-02-21</time>
-            </span>
+      <time title="创建时间：2025-05-07 22:02:20 / 修改时间：22:03:47" itemprop="dateCreated datePublished" datetime="2025-05-07T22:02:20+08:00">2025-05-07</time>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -212,8 +212,151 @@
     
     
     <div class="post-body" itemprop="articleBody">
+          <h2 id="人类的智能"><a href="#人类的智能" class="headerlink" title="人类的智能"></a>人类的智能</h2><blockquote>
+<p>环境感知 -&gt; 自主思考 -&gt; 作出反应</p>
+</blockquote>
+<p>想象这样一个场景，假如你正在开车，绿灯通过一个十字路口的时候，一个小朋友突然闯红灯，跑上了马路，你如果再以当前速度行驶，那么接下来你可能就会撞到他。你下意识的会奋力踩下刹车，避免交通事故。<br>首先你的眼睛（外部感知）看到了小男孩，你会在大脑中快速计算，如果不做任何操作，那么马上你就会撞上他，在你的潜意识里面，如果发生了严重的车祸会对你和他人造成可怕的后果（思考过程）。为了避免这个情况发生，你必须要马上踩刹车（作出判断）。并且由于这次遭遇让你感到后怕，你会提醒自己，在过红绿灯的时候要记得减速（自身优化）。人类的智能，体现在可以处理复杂问题，并且有学习与适应的能力。</p>
+<h2 id="人工智能（AI）是什么"><a href="#人工智能（AI）是什么" class="headerlink" title="人工智能（AI）是什么"></a>人工智能（AI）是什么</h2><p>AI （Artificial Intelligence 人工智能）是一个广泛的概念，是研究如何使用计算机或机器能够执行通常需要人类完成的任务的学科。这些任务包括学习、推理、解决问题、感知（视觉或听觉）和语言理解。AI 的目标是创建能够模拟、拓展或辅助人类的智能系统。  我们通常使用和接触的语音助手，图像识别，推荐系统，智能驾驶都属于狭义 AI，特指专注于特定任务，性能优于人类但局限性强。而最近大火的 ChatGPT，deepseek，grok，Google gemini 等，都属于生成式 AI(GenAI)，它也是 AI 的一种，可以基于海量训练数据，生成新的内容，例如文本、图像、音频和视频。</p>
+<h2 id="机器学习"><a href="#机器学习" class="headerlink" title="机器学习"></a>机器学习</h2><p>机器学习 是 AI 的一个子集，专注于通过数据让机器自动学习和改进，而无需显式编程。其中包含了三种学习方式，Supervised learning（监督学习），Unsupervised learning（无监督学习）以及 Semi-supervised Learning（半监督学习）。</p>
+<p><strong>监督学习（Supervised Learning）</strong><br>在监督学习中，训练数据是<strong>带有标签</strong>的。也就是说，每个输入样本都有一个对应的正确输出（标签）。算法通过学习输入和输出之间的关系，来对新的、未见过的数据进行预测。<br><strong>目标</strong>：建立输入到输出的映射关系，用于预测，例如根据房屋面积和位置预测房价</p>
+<p><strong>无监督学习（Unsupervised Learning）</strong><br>在无监督学习中，训练数据是<strong>不带标签</strong>的。算法需要从数据中自行发现隐藏的模式、结构或关系。<br><strong>目标</strong>：探索数据的内在特性，而非直接预测输出，例如将客户数据分组，找出相似的消费模式。</p>
+<p><strong>半监督学习（Semi-supervised Learning）</strong><br>半监督学习结合了有标签数据和无标签数据进行训练。通常在有标签数据稀缺的情况下使用，通过利用大量无标签数据来提升模型的性能。<br><strong>目标</strong>：先用少量有标签数据训练模型，再用无标签数据进一步优化。</p>
+<h2 id="深度学习"><a href="#深度学习" class="headerlink" title="深度学习"></a>深度学习</h2><p>深度学习是机器学习的一个分支，通过人工神经网络的结构来让计算机学会从数据中发现隐藏模式，而不是通过代码告诉它怎么做。<br>在神经网络中，网络结构通常是三层：</p>
+<ol>
+<li><strong>输入层</strong>：接收初始数据的层</li>
+<li><strong>隐藏层</strong>：位于输入层和输出层之间，负责处理和转换输入数据，以提取特征并进行复杂的计算</li>
+<li><strong>输出层</strong>：生成最终结果的层</li>
+</ol>
+<p>我们通常说神经网络的深度，是指隐藏层的数量，例如第一层可以识别图片边缘，第二层通过边缘组合轮廓，更深的层通过轮廓识别是什么物体。<br>深度学习通过多层神经网络让计算机能够自己从数据中学习模式，特别是在图片识别，语音识别，自然语言处理方面很有用。</p>
+<h2 id="GenAI"><a href="#GenAI" class="headerlink" title="GenAI"></a>GenAI</h2><p>生成式人工智能（Generative AI）是深度学习技术发展的最新成果，主要通过大语言模型（LLM）和多模态模型来创造新内容。</p>
+<h3 id="GenAI-与深度学习的关系"><a href="#GenAI-与深度学习的关系" class="headerlink" title="GenAI 与深度学习的关系"></a>GenAI 与深度学习的关系</h3><ul>
+<li>基于深度神经网络架构（如Transformer）</li>
+<li>依赖海量数据和算力进行预训练</li>
+<li>通过自监督学习捕捉数据内在模式</li>
+</ul>
+<h3 id="GenAI-的由来"><a href="#GenAI-的由来" class="headerlink" title="GenAI 的由来"></a>GenAI 的由来</h3><ol>
+<li>2017年Transformer架构的提出</li>
+<li>2020年GPT-3展现强大生成能力</li>
+<li>扩散模型在图像生成领域的突破</li>
+<li>多模态技术的融合发展</li>
+</ol>
+<h3 id="GenAI-的应用场景"><a href="#GenAI-的应用场景" class="headerlink" title="GenAI 的应用场景"></a>GenAI 的应用场景</h3><ul>
+<li>文本生成：代码自动补全（GitHub Copilot）、文档创作</li>
+<li>图像生成：DALL·E 3、Midjourney等工具</li>
+<li>音频&#x2F;视频合成：语音克隆、数字人播报</li>
+<li>跨模态交互：图文互转、多轮对话系统</li>
+</ul>
+<h3 id="GenAI-热度高涨的原因"><a href="#GenAI-热度高涨的原因" class="headerlink" title="GenAI 热度高涨的原因"></a>GenAI 热度高涨的原因</h3><ol>
+<li>技术突破带来生产力革命</li>
+<li>交互方式更贴近人类自然习惯</li>
+<li>降低专业领域应用门槛</li>
+<li>创造新的商业模式和就业机会</li>
+</ol>
+<h2 id="Prompt-的使用"><a href="#Prompt-的使用" class="headerlink" title="Prompt 的使用"></a>Prompt 的使用</h2><h3 id="Prompt-的作用"><a href="#Prompt-的作用" class="headerlink" title="Prompt 的作用"></a>Prompt 的作用</h3><ul>
+<li>建立人机交互的语义桥梁，将自然语言转化为机器可理解的指令</li>
+<li>控制生成内容的风格、格式和领域特征（如代码&#x2F;文案&#x2F;报告）</li>
+<li>激活大模型的特定能力模块（如数学推理&#x2F;创意写作）</li>
+</ul>
+<h3 id="有效-Prompt-的特征"><a href="#有效-Prompt-的特征" class="headerlink" title="有效 Prompt 的特征"></a>有效 Prompt 的特征</h3><ol>
+<li><strong>明确具体</strong>：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 模糊Prompt ✗ </span></span><br><span class="line"><span class="string">&quot;写一个排序函数&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 明确Prompt ✓</span></span><br><span class="line"><span class="string">&quot;用Python实现快速排序算法，要求：</span></span><br><span class="line"><span class="string">1. 函数名为quick_sort</span></span><br><span class="line"><span class="string">2. 输入为整数列表</span></span><br><span class="line"><span class="string">3. 返回排序后的新列表&quot;</span></span><br></pre></td></tr></table></figure></li>
+<li><strong>结构化表达</strong>： <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">角色：资深Java开发工程师</span><br><span class="line">任务：编写Spring Boot登录接口</span><br><span class="line">要求：</span><br><span class="line">- 使用JWT认证</span><br><span class="line">- 包含参数校验</span><br><span class="line">- 返回标准JSON格式</span><br></pre></td></tr></table></figure></li>
+<li><strong>示例驱动</strong>（One-shot）： <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入：删除数组重复元素</span><br><span class="line"></span><br><span class="line">示例：</span><br><span class="line">输入：[1,2,2,3] → 输出：[1,2,3]</span><br><span class="line"></span><br><span class="line">请用TypeScript实现相同功能的函数</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="Prompt-工程技巧"><a href="#Prompt-工程技巧" class="headerlink" title="Prompt 工程技巧"></a>Prompt 工程技巧</h3><ul>
+<li><strong>角色设定</strong>：”假设你是Google首席工程师，需要…”</li>
+<li><strong>链式思考</strong>：”请分步骤解释Kubernetes Pod创建过程”</li>
+<li><strong>格式约束</strong>：”用Markdown表格对比MySQL与Redis的特性”</li>
+<li><strong>知识隔离</strong>：”忽略2023年之前的知识，最新React特性是…”</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文简单介绍了人工智能（AI）及其子分支，包括机器学习和深度学习，并重点探讨了新近崛起的生成式人工智能（GenAI）。人工智能（AI）旨在创建能够模拟、拓展或辅助人类智能的系统，而机器学习使机器能够通过数据学习并改进。深度学习通过多层神经网络从大数据中学习隐藏模式，尤其擅长于图像识别、语音识别和自然语言处理。生成式人工智能（GenAI）是深度学习技术的最新成果，通过大语言模型及多模态模型创造新内容，例如文本生成、图像生成以及音频&#x2F;视频合成。</p>
+<p>GenAI的应用场景丰富多元，涵盖代码自动补全、文档创作、图像生成工具如DALL·E 3和Midjourney、语音克隆、数字人播报以及多轮对话系统等。其热度高涨的原因是技术突破带来了生产力革命，使得交互方式更贴近人类自然习惯，并降低了专业领域应用门槛。Prompt在GenAI中的作用尤为重要，它作为人机交互的语义桥梁，通过角色设定、链式思考、格式约束和知识隔离等技巧，可以有效地控制和激活模型的特定能力。</p>
+<p>生成式人工智能（GenAI）代表了当前人工智能研究和应用的前沿方向，预示着一个新的技术革命已经在悄无声息地冲击各行各业，并蕴含着无限的潜力和机遇。在未来，GenAI有望在以下几个方面继续发展：</p>
+<ol>
+<li><p><strong>更高级的多模态交互</strong>：随着多模态模型的不断进步，GenAI将不仅在单一文本、图像或音频等领域独立生成内容，还可以整合多种数据类型，实现更复杂的多模态交互。例如，通过融合视觉、听觉甚至触觉等感知信息，生成更丰富、更具沉浸感的内容。</p>
+</li>
+<li><p><strong>个性化与定制化内容生成</strong>：GenAI将进一步提升对个体用户偏好和需求的理解能力，生成更为个性化和定制化的内容。无论是在教育、娱乐、广告还是客户服务等领域，都能提供高度个性化的体验。</p>
+</li>
+<li><p><strong>跨学科融合与应用拓展</strong>：GenAI的应用将逐渐渗透到更多行业和领域，推动跨学科交叉融合。例如，在医疗领域，GenAI可以辅助医学诊断和药物发现；在金融领域，可以用于风险管理、投资分析和市场预测等。</p>
+</li>
+<li><p><strong>更强大的自主学习与迭代能力</strong>：随着算法的不断优化，未来的GenAI模型将具备更强大的自主学习和自我迭代能力，能够在较少人工干预的情况下不断优化生成结果，并且能从用户反馈中学习并自我进化。</p>
+</li>
+<li><p><strong>伦理与安全性增强</strong>：考虑到生成内容可能带来的伦理安全问题，如虚假信息生成或隐私泄露等，未来在发展GenAI技术的同时，将更加强调伦理规范和技术安全性的提升。例如，通过引入更严格的生成内容审核机制，或者开发出能主动识别并避免生成有害信息的算法。</p>
+</li>
+<li><p><strong>绿色计算与能效优化</strong>：由于GenAI模型的训练通常需要巨大的计算资源和能源消耗，未来的研究将致力于提升模型训练和推理的效率，并寻找更为环保和节能的计算解决方案，如硬件加速、分布式计算优化等。</p>
+</li>
+<li><p><strong>人机协作的新范式</strong>：GenAI将使人类与机器的协作更加紧密和自然。人类将能够通过与GenAI的对话和交互，更高效地完成任务并激发创新灵感，而GenAI将成为人类在各个领域中强有力的助手。</p>
+</li>
+</ol>
+<p>总体而言，生成式人工智能（GenAI）在未来的发展将进一步深化其在各行业的应用，推动更多创新和生产力提升，同时在社会伦理、安全性、能效优化和人机协作等方面也将不断进步和完善。</p>
 
       
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/02/21/Obsidian%E5%BC%80%E7%AE%B1%E5%8D%B3%E7%94%A8%E5%BA%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Roy">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="蝴蝶效应">
+      <meta itemprop="description" content="即使细微如蝴蝶鼓舞，也能煽动千里之飓风。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 蝴蝶效应">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/02/21/Obsidian%E5%BC%80%E7%AE%B1%E5%8D%B3%E7%94%A8%E5%BA%93/" class="post-title-link" itemprop="url">Obsidian开箱即用库</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-02-21 15:45:25 / 修改时间：16:04:28" itemprop="dateCreated datePublished" datetime="2024-02-21T15:45:25+08:00">2024-02-21</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
           <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Obsidian 相信大家应该不陌生了，一款使用 Markdown 语法的双链笔记工具。个人免费使用，丰富的插件系统，知识快速链接，都是其出色的地方。当然它也有一些值得诟病的地方，例如界面简单，新手打开感觉就是一个普通笔记本，和隔壁 Notion 的初始的精美相比，实在是“简陋”。因此大部分小伙伴都是了解一段时间后要么放弃，要么转战其他笔记工具。因此这篇文章就是告诉大家如何利用丰富的插件库来打造专属个人的笔记本。文章最后会附上懒人包，开箱即用。</p>
 <h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>可以到官网下载对应平台的安装包，几乎做到了全平台覆盖，附上<a target="_blank" rel="noopener" href="https://obsidian.md/">官网地址</a>。</p>
           <!--noindex-->
@@ -230,53 +373,66 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
-  
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://example.com/2024/02/08/%E8%AE%A4%E7%9F%A5%E8%A7%89%E9%86%92/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="Roy">
-      <meta itemprop="description" content="即使细微如蝴蝶鼓舞，也能煽动千里之飓风。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="蝴蝶效应">
+      <meta itemprop="description" content="即使细微如蝴蝶鼓舞，也能煽动千里之飓风。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 蝴蝶效应">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/02/08/%E8%AE%A4%E7%9F%A5%E8%A7%89%E9%86%92/" class="post-title-link" itemprop="url">认知觉醒</a>
+          <a href="/2024/02/08/%E8%AE%A4%E7%9F%A5%E8%A7%89%E9%86%92/" class="post-title-link" itemprop="url">认知觉醒</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2024-02-08 14:35:07" itemprop="dateCreated datePublished" datetime="2024-02-08T14:35:07+08:00">2024-02-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-02-19 10:38:44" itemprop="dateModified" datetime="2024-02-19T10:38:44+08:00">2024-02-19</time>
-              </span>
+      <time title="创建时间：2024-02-08 14:35:07" itemprop="dateCreated datePublished" datetime="2024-02-08T14:35:07+08:00">2024-02-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-02-19 10:38:44" itemprop="dateModified" datetime="2024-02-19T10:38:44+08:00">2024-02-19</time>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -285,8 +441,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <p><strong>认知是什么？</strong><br>?<br>“认识”和“知道”，<br>“认”：感知到外界的信息，<br>“识”：在脑袋中进行解释和整理(理解)，<br>“知”：通过自己的思维体系消化和决策，<br>“道”：最终通过自己的语言来表达和解释<br>提升认知能力，就是提升看待和处理外界事务的能力。</p>
 <p><strong>三个大脑的关系</strong><br>?<br>人体主要分为3个脑区，“情绪脑”、“本能脑”和“理智脑”。并且由于“情绪脑”、“本能脑”离心脏近，当遇到突发事件后，“情绪”和“本能”会自动开始接管，“理智”脑可能会因为供血不足而思考缓慢。因此我们需要稳定情绪，重新思考。</p>
           <!--noindex-->
@@ -303,56 +457,75 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
-  
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://example.com/2024/02/01/angular17-qa/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="Roy">
-      <meta itemprop="description" content="即使细微如蝴蝶鼓舞，也能煽动千里之飓风。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="蝴蝶效应">
+      <meta itemprop="description" content="即使细微如蝴蝶鼓舞，也能煽动千里之飓风。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 蝴蝶效应">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/02/01/angular17-qa/" class="post-title-link" itemprop="url">Angular 17 - QA</a>
+          <a href="/2024/02/01/angular17-qa/" class="post-title-link" itemprop="url">Angular 17 - QA</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2024-02-01 17:00:00 / 修改时间：17:02:18" itemprop="dateCreated datePublished" datetime="2024-02-01T17:00:00+08:00">2024-02-01</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
-                </span>
-            </span>
+      <time title="创建时间：2024-02-01 17:00:00" itemprop="dateCreated datePublished" datetime="2024-02-01T17:00:00+08:00">2024-02-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-27 21:34:28" itemprop="dateModified" datetime="2025-04-27T21:34:28+08:00">2025-04-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -361,14 +534,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Angular-Component-Core-Directives-and-Pipes"><a href="#Angular-Component-Core-Directives-and-Pipes" class="headerlink" title="Angular Component, Core Directives and Pipes"></a>Angular Component, Core Directives and Pipes</h1><h3 id="Angular-17-新增了哪些新的方法"><a href="#Angular-17-新增了哪些新的方法" class="headerlink" title="Angular 17 新增了哪些新的方法"></a>Angular 17 新增了哪些新的方法</h3><p>新增了 @for @empty | @if @else |  @switch @case @default</p>
-<h3 id="for-empty-和-ngFor-的区别"><a href="#for-empty-和-ngFor-的区别" class="headerlink" title="@for @empty 和 *ngFor 的区别"></a>@for @empty 和 *ngFor 的区别</h3><p>更加简单，默认支持 $index, $count, $first, $last, $odd, $even，必须要给 track，可以是方法</p>
-<h3 id="if-else-和-ngIf-的区别"><a href="#if-else-和-ngIf-的区别" class="headerlink" title="@if @else  和 *ngIf 的区别"></a>@if @else  和 *ngIf 的区别</h3><p>写法更方便</p>
-<h3 id="ngContainer-的作用是什么"><a href="#ngContainer-的作用是什么" class="headerlink" title="*ngContainer 的作用是什么"></a>*ngContainer 的作用是什么</h3><p>作为一个占位符，和 <code>React</code>的 <code>&lt;&gt;&lt;/&gt;</code>类似，通常可以结合其他指令一起使用。不会放到 dom 结构中</p>
-<h3 id="ngTemplate-是什么"><a href="#ngTemplate-是什么" class="headerlink" title="ngTemplate 是什么"></a>ngTemplate 是什么</h3><p>可以定义一个模板元素</p>
-<h3 id="build-in-pipe-有哪些"><a href="#build-in-pipe-有哪些" class="headerlink" title="build-in pipe 有哪些"></a>build-in pipe 有哪些</h3><p><code>date: &#39;MMM/dd/YYYY&#39;, currency: &#39;CNY&#39;, number:&#39;3.3-5&#39;, slice:0:2, json, keyvalue</code></p>
+          <h1 id="Angular-Component-Core-Directives-and-Pipes"><a href="#Angular-Component-Core-Directives-and-Pipes" class="headerlink" title="Angular Component, Core Directives and Pipes"></a>Angular Component, Core Directives and Pipes</h1><h2 id="Angular-Component-Core-Directives-and-Pipes-1"><a href="#Angular-Component-Core-Directives-and-Pipes-1" class="headerlink" title="Angular Component, Core Directives and Pipes"></a>Angular Component, Core Directives and Pipes</h2><p><strong>Angular 17 新增了哪些新的方法</strong><br>?<br>新增了 @for @empty | @if @else |  @switch @case @default</p>
+<p><strong>@for @empty 和 *ngFor 的区别</strong><br>?<br>更加简单，默认支持 $index, $count, $first, $last, $odd, $even，必须要给 track，可以是方法</p>
+<p><strong>@if @else  和 *ngIf 的区别</strong><br>?<br>写法更方便</p>
+<p><strong>*ngContainer 的作用是什么</strong><br>?<br>作为一个占位符，和 <code>React</code>的 <code>&lt;&gt;&lt;/&gt;</code>类似，通常可以结合其他指令一起使用。不会放到 dom 结构中</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2024/02/01/angular17-qa/#more" rel="contents">
@@ -383,62 +552,75 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
-  
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/22/react_fiber/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="Roy">
-      <meta itemprop="description" content="即使细微如蝴蝶鼓舞，也能煽动千里之飓风。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="蝴蝶效应">
+      <meta itemprop="description" content="即使细微如蝴蝶鼓舞，也能煽动千里之飓风。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 蝴蝶效应">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/22/react_fiber/" class="post-title-link" itemprop="url">图解 React Fiber 机制</a>
+          <a href="/2021/04/22/react_fiber/" class="post-title-link" itemprop="url">图解 React Fiber 机制</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-04-22 22:08:37" itemprop="dateCreated datePublished" datetime="2021-04-22T22:08:37+08:00">2021-04-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-02-01 16:54:03" itemprop="dateModified" datetime="2024-02-01T16:54:03+08:00">2024-02-01</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
-                </span>
-            </span>
+      <time title="创建时间：2021-04-22 22:08:37" itemprop="dateCreated datePublished" datetime="2021-04-22T22:08:37+08:00">2021-04-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-02-01 16:54:03" itemprop="dateModified" datetime="2024-02-01T16:54:03+08:00">2024-02-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -447,8 +629,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <p>在我们去了解React Fiber之前，我们需要先了解到React的渲染机制，从而去探求为什么React会选择推出React Fiber来替换以前的模式。</p>
 <h2 id="React的渲染机制"><a href="#React的渲染机制" class="headerlink" title="React的渲染机制"></a>React的渲染机制</h2><p>React会在内存中维护一棵虚拟的DOM树（V-DOM-TREE）。当数据(state)发生变化时，会自动更新虚拟DOM，生成一棵新的虚拟DOM树。通过 Diff 两棵树来找到变化的部分，从而得到一个更新的集合（Patch），然后将集合加到队列中，最终去批量更新Patch到真实的DOM节点中。</p>
 <p><img src="https://pic1.zhimg.com/80/v2-de478ba837d05e597cbf629b176e2aac_1440w.jpg" alt="img"></p>
@@ -466,62 +646,75 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
-  
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/08/css%E8%AF%A6%E8%A7%A3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="Roy">
-      <meta itemprop="description" content="即使细微如蝴蝶鼓舞，也能煽动千里之飓风。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="蝴蝶效应">
+      <meta itemprop="description" content="即使细微如蝴蝶鼓舞，也能煽动千里之飓风。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 蝴蝶效应">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/08/css%E8%AF%A6%E8%A7%A3/" class="post-title-link" itemprop="url">css详解</a>
+          <a href="/2021/04/08/css%E8%AF%A6%E8%A7%A3/" class="post-title-link" itemprop="url">css详解</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-04-08 23:14:42" itemprop="dateCreated datePublished" datetime="2021-04-08T23:14:42+08:00">2021-04-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-02-01 16:54:03" itemprop="dateModified" datetime="2024-02-01T16:54:03+08:00">2024-02-01</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
-                </span>
-            </span>
+      <time title="创建时间：2021-04-08 23:14:42" itemprop="dateCreated datePublished" datetime="2021-04-08T23:14:42+08:00">2021-04-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-02-01 16:54:03" itemprop="dateModified" datetime="2024-02-01T16:54:03+08:00">2024-02-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -530,8 +723,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <h2 id="CSS-学习"><a href="#CSS-学习" class="headerlink" title="CSS 学习"></a>CSS 学习</h2><div class="title">
 
   <div class="children">
@@ -561,62 +752,75 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
-  
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/07/package-name-vs-applicationId/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="Roy">
-      <meta itemprop="description" content="即使细微如蝴蝶鼓舞，也能煽动千里之飓风。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="蝴蝶效应">
+      <meta itemprop="description" content="即使细微如蝴蝶鼓舞，也能煽动千里之飓风。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 蝴蝶效应">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/12/07/package-name-vs-applicationId/" class="post-title-link" itemprop="url">Jetpack的Databinding使用</a>
+          <a href="/2020/12/07/package-name-vs-applicationId/" class="post-title-link" itemprop="url">Jetpack的Databinding使用</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-12-07 20:30:37" itemprop="dateCreated datePublished" datetime="2020-12-07T20:30:37+08:00">2020-12-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-02-01 16:54:03" itemprop="dateModified" datetime="2024-02-01T16:54:03+08:00">2024-02-01</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Development/" itemprop="url" rel="index"><span itemprop="name">Development</span></a>
-                </span>
-            </span>
+      <time title="创建时间：2020-12-07 20:30:37" itemprop="dateCreated datePublished" datetime="2020-12-07T20:30:37+08:00">2020-12-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-02-01 16:54:03" itemprop="dateModified" datetime="2024-02-01T16:54:03+08:00">2024-02-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Development/" itemprop="url" rel="index"><span itemprop="name">Development</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -625,8 +829,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在一个多模块开发的Android项目中引入了<code>databinding</code> ，踩到了一些坑。这篇文章会将项目中使用<code>databinding</code>的心得以及踩到的坑整理下来。</p>
           <!--noindex-->
             <div class="post-button">
@@ -642,62 +844,75 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
-  
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/23/data-structure/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="Roy">
-      <meta itemprop="description" content="即使细微如蝴蝶鼓舞，也能煽动千里之飓风。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="蝴蝶效应">
+      <meta itemprop="description" content="即使细微如蝴蝶鼓舞，也能煽动千里之飓风。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 蝴蝶效应">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/23/data-structure/" class="post-title-link" itemprop="url">《大话数据结构》要点整理</a>
+          <a href="/2020/11/23/data-structure/" class="post-title-link" itemprop="url">《大话数据结构》要点整理</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-11-23 23:21:37" itemprop="dateCreated datePublished" datetime="2020-11-23T23:21:37+08:00">2020-11-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-02-01 16:54:03" itemprop="dateModified" datetime="2024-02-01T16:54:03+08:00">2024-02-01</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Development/" itemprop="url" rel="index"><span itemprop="name">Development</span></a>
-                </span>
-            </span>
+      <time title="创建时间：2020-11-23 23:21:37" itemprop="dateCreated datePublished" datetime="2020-11-23T23:21:37+08:00">2020-11-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-02-01 16:54:03" itemprop="dateModified" datetime="2024-02-01T16:54:03+08:00">2024-02-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Development/" itemprop="url" rel="index"><span itemprop="name">Development</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -706,8 +921,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>根据《大话数据结构》提取的一些书籍中的要点，根据自己习惯整理，可能对于他人不适用。整理了大部分要点，后续比较复杂的图结构和算法没有再深入整理。</p>
           <!--noindex-->
             <div class="post-button">
@@ -723,62 +936,75 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
-  
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/23/clean-code/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="Roy">
-      <meta itemprop="description" content="即使细微如蝴蝶鼓舞，也能煽动千里之飓风。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="蝴蝶效应">
+      <meta itemprop="description" content="即使细微如蝴蝶鼓舞，也能煽动千里之飓风。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 蝴蝶效应">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/23/clean-code/" class="post-title-link" itemprop="url">《代码整洁之道》要点整理</a>
+          <a href="/2020/11/23/clean-code/" class="post-title-link" itemprop="url">《代码整洁之道》要点整理</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-11-23 22:57:47" itemprop="dateCreated datePublished" datetime="2020-11-23T22:57:47+08:00">2020-11-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-02-01 16:54:03" itemprop="dateModified" datetime="2024-02-01T16:54:03+08:00">2024-02-01</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Development/" itemprop="url" rel="index"><span itemprop="name">Development</span></a>
-                </span>
-            </span>
+      <time title="创建时间：2020-11-23 22:57:47" itemprop="dateCreated datePublished" datetime="2020-11-23T22:57:47+08:00">2020-11-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-02-01 16:54:03" itemprop="dateModified" datetime="2024-02-01T16:54:03+08:00">2024-02-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Development/" itemprop="url" rel="index"><span itemprop="name">Development</span></a>
+        </span>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -787,8 +1013,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>根据《代码整洁之道》提取的一些书籍中的要点，根据自己习惯整理，可能对于他人不适用。整理了大部分要点，关于代码重构和代码味道的部分没有整理，在读code smell的时候再整理这部分。</p>
           <!--noindex-->
             <div class="post-button">
@@ -804,53 +1028,66 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
+      
+    </footer>
   </article>
-  
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/14/thoughtworks-agile/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
       <meta itemprop="name" content="Roy">
-      <meta itemprop="description" content="即使细微如蝴蝶鼓舞，也能煽动千里之飓风。">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="蝴蝶效应">
+      <meta itemprop="description" content="即使细微如蝴蝶鼓舞，也能煽动千里之飓风。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 蝴蝶效应">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/14/thoughtworks-agile/" class="post-title-link" itemprop="url">Thoughtworks的敏捷开发</a>
+          <a href="/2020/11/14/thoughtworks-agile/" class="post-title-link" itemprop="url">Thoughtworks的敏捷开发</a>
         </h2>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-11-14 19:53:28" itemprop="dateCreated datePublished" datetime="2020-11-14T19:53:28+08:00">2020-11-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-02-01 16:54:03" itemprop="dateModified" datetime="2024-02-01T16:54:03+08:00">2024-02-01</time>
-              </span>
+      <time title="创建时间：2020-11-14 19:53:28" itemprop="dateCreated datePublished" datetime="2020-11-14T19:53:28+08:00">2020-11-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-02-01 16:54:03" itemprop="dateModified" datetime="2024-02-01T16:54:03+08:00">2024-02-01</time>
+    </span>
 
-          
+  
+</div>
 
         </div>
       </header>
@@ -859,8 +1096,6 @@
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
           <h3 id="三大支柱"><a href="#三大支柱" class="headerlink" title="三大支柱"></a>三大支柱</h3><ul>
 <li><strong>经营可持续的业务</strong>(Run a sustainable business)</li>
 <li><strong>推动IT变革，追求软件卓越</strong>(Champion software excellence and revolutionize the IT industry)</li>
@@ -882,265 +1117,56 @@
     
     
     
-      <footer class="post-footer">
+
+    <footer class="post-footer">
         <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
       
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/07/19/dependencyCheck/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Roy">
-      <meta itemprop="description" content="即使细微如蝴蝶鼓舞，也能煽动千里之飓风。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="蝴蝶效应">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/19/dependencyCheck/" class="post-title-link" itemprop="url">在Gradle中添加Dependency Check，以及在Sonar中查看报告</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-19 21:23:03" itemprop="dateCreated datePublished" datetime="2020-07-19T21:23:03+08:00">2020-07-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-02-01 16:54:03" itemprop="dateModified" datetime="2024-02-01T16:54:03+08:00">2024-02-01</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>在项目中需要引入<code>dependency check</code>的工具来扫描相关依赖的库是否有安全漏洞等问题。由于是使用Gradle作为依赖构建工具，以及kotlin作为开发语言，所以选择了<code>owasp dependency check</code>的<code>Gradle</code>插件的方式。最后需要将报告上传到<code>sonar</code>进行展示。</p>
-<h4 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h4><ul>
-<li>Gradle 6.4.1</li>
-<li>org.owasp.dependencycheck </li>
-<li>sonarqube</li>
-</ul>
-<h4 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h4><h5 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h5>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/07/19/dependencyCheck/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
-
-
-
-          </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="Roy"
-      src="/images/avatar.jpg">
-  <p class="site-author-name" itemprop="name">Roy</p>
-  <div class="site-description" itemprop="description">即使细微如蝴蝶鼓舞，也能煽动千里之飓风。</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">42</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-        <span class="site-state-item-count">9</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-        <span class="site-state-item-count">36</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-
-
-
-      </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2024</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Roy</span>
-</div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
-  </div>
-
-        
-
-
-
-
-
-
-
-
-      </div>
     </footer>
+  </article>
+</div>
+
+
+
+
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Roy</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
 
-  
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
+    </div>
+  </footer>
 
   
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
 
-
-
-
-  
-<script src="/js/local-search.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
 </body>
 </html>
